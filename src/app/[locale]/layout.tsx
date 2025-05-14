@@ -23,8 +23,8 @@ const space_grotesk = Space_Grotesk({
   variable: '--font-space-grotesk'
 })
 export const metadata: Metadata = {
-  title: 'Next Temp',
-  description: 'create next app By Yahya Parvar!'
+  title: 'Andrés Meoñez | Full Stack Developer',
+  description: 'Professional portfolio of Andrés Meoñez, Full Stack Developer specializing in modern web technologies'
 }
 
 export default function RootLayout({
@@ -46,7 +46,7 @@ export default function RootLayout({
         <ThemeProvider
           enableSystem
           attribute='class'
-          defaultTheme='dark'
+          defaultTheme='facebook'
           themes={[
             'light',
             'dark',
