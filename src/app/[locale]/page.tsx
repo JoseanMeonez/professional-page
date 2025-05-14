@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'
 import Button from './components/Button'
+import ContactButton from './components/ContactButton'
 
 export default function DashboardPage() {
   const t = useTranslations('')
@@ -23,11 +24,7 @@ export default function DashboardPage() {
               {t('View Projects')}
             </Button>
           </a>
-          <a href='#contact'>
-            <Button rounded size='large' variant='secondary'>
-              {t('Contact Me')}
-            </Button>
-          </a>
+          <ContactButton />
         </div>
       </section>
       
