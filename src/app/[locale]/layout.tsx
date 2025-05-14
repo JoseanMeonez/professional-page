@@ -44,19 +44,11 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider
-          enableSystem
           attribute='class'
-          defaultTheme='facebook'
-          themes={[
-            'light',
-            'dark',
-            'instagram',
-            'facebook',
-            'discord',
-            'netflix',
-            'twilight',
-            'reddit'
-          ]}
+          defaultTheme='dark'
+          themes={['dark']}
+          enableSystem={false}
+          disableTransitionOnChange
         >
           <NextIntlClientProvider
             locale={locale}
