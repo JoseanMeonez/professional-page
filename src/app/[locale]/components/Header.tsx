@@ -5,7 +5,6 @@ import { FC } from 'react'
 import GithubIcon from '../../icons/github'
 import LogoIcon from '../../icons/logo'
 import LangSwitcher from './LangSwitcher'
-import ThemeSwitch from './ThemeSwitch'
 interface Props {
   locale: string
 }
@@ -24,10 +23,9 @@ export const Header: FC<Props> = ({ locale }) => {
       <div className='flex flex-row items-center gap-3'>
         <nav className='mr-10 inline-flex gap-5'>
           <Link lang={locale} href='/about'>{t('About')}</Link>
-          <Link lang={locale} href='#projects'>{t('Projects')}</Link>
-          <Link lang={locale} href='#contact'>{t('Contact')}</Link>
+          {/* <Link lang={locale} href='#projects'>{t('Projects')}</Link>
+          <Link lang={locale} href='#contact'>{t('Contact')}</Link> */}
         </nav>
-        <ThemeSwitch />
         <LangSwitcher />
         <a
           href='https://github.com/yahyaparvar/nextjs-template'
