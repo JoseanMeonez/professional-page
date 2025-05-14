@@ -28,7 +28,7 @@ export const Header: FC<Props> = ({ locale }) => {
         </nav>
         <LangSwitcher />
         <a
-          href='https://github.com/yahyaparvar/nextjs-template'
+          href='https://github.com/JoseanMeonez'
           target='_blank'
         >
           <div className='size-8'>
