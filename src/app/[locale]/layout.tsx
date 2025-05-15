@@ -45,8 +45,8 @@ export default function RootLayout({
       <body>
         <ThemeProvider
           attribute='class'
-          defaultTheme='dark'
-          themes={['dark']}
+          defaultTheme='facebook'
+          themes={['facebook']}
           enableSystem={false}
           disableTransitionOnChange
         >
