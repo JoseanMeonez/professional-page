@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/src/app/[locale]/components/ThemeProvider'
-import type { Metadata } from 'next'
+import { locales } from '@/src/i18n'
+import type { Viewport } from 'next'
 import {
   AbstractIntlMessages,
   NextIntlClientProvider,
@@ -11,6 +12,8 @@ import { Header } from './components/Header'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import './globals.css'
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://andres-meonez.vercel.app'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -26,9 +29,45 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['400', '500'],
   variable: '--font-jetbrains-mono'
 })
-export const metadata: Metadata = {
-  title: 'Andrés Meoñez | Full Stack Developer',
-  description: 'Professional portfolio of Andrés Meoñez, Full Stack Developer specializing in modern web technologies'
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const title = 'Andrés Meoñez | Full Stack Developer'
+  const description =
+    '4+ years delivering enterprise software. Specialized in ServiceNow, .NET, Node.js, Go, Angular, React, and AI-assisted development.'
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: { default: title, template: '%s | Andrés Meoñez' },
+    description,
+    openGraph: {
+      type: 'website',
+      url: `/${locale}`,
+      title,
+      description,
+      siteName: 'Andrés Meoñez Portfolio',
+      locale,
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og-image.png'],
+    },
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+        'x-default': '/en',
+      },
+    },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  }
 }
 
 export default function RootLayout({
@@ -50,6 +89,27 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{if(!localStorage.getItem('theme')){localStorage.setItem('theme',window.matchMedia('(prefers-color-scheme: dark)').matches?'terminal-dark':'terminal')}}catch(e){}})();`,
+          }}
+        />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Andrés Meoñez',
+              url: baseUrl,
+              email: 'joseanmeonez@gmail.com',
+              jobTitle: 'Full Stack Developer',
+              knowsAbout: [
+                'ServiceNow', '.NET', 'Node.js', 'Go', 'Angular', 'React',
+                'Next.js', 'SQL Server', 'PostgreSQL', 'TypeScript',
+              ],
+              sameAs: [
+                'https://github.com/JoseanMeonez',
+                'https://linkedin.com/in/andrés-meoñez',
+              ],
+            }),
           }}
         />
       </head>
