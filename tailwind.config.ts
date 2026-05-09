@@ -35,11 +35,16 @@ const config = {
         selected: 'var(--selected)',
         dropdown: 'var(--dropdown)',
         dropdownHover: 'var(--dropdown-hover)',
-        buttonSecondary: 'var(--button-secondary)'
+        buttonSecondary: 'var(--button-secondary)',
+        accent: 'var(--accent)',
+        surface: 'var(--surface)',
+        'border-theme': 'var(--border)'
       },
 
       fontFamily: {
-        sans: ['var(--font-space-grotesk)', 'var(--rubik)']
+        sans: ['var(--font-syne)', 'var(--rubik)'],
+        display: ['var(--font-syne)', 'sans-serif'],
+        mono: ['var(--font-jetbrains-mono)', 'monospace']
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

@@ -18,6 +18,9 @@
     --logo-shadow: #053949;
     --logo-body: #00d8fe;
     --span-bg: linear-gradient(to right, #4e4e9e, #097fa5, #3e87ed);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
   }
   .dark {
     --primary: #d6deff;
@@ -34,6 +37,9 @@
     --logo-shadow: #0a2e36;
     --logo-body: #097fa5;
     --span-bg: linear-gradient(to right, #8c00ff, #0fb4e1, #a1d930, #ae0000);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
   }
   .sunset {
     --primary: #ff6b6b;
@@ -50,6 +56,9 @@
     --logo-shadow: #333333;
     --logo-body: #ff6b6b;
     --span-bg: linear-gradient(to right, #ff6b6b, #ff9966, #ffcc66);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
   }
   .instagram {
     --primary: #cc3f7e;
@@ -66,6 +75,9 @@
     --logo-shadow: #000000;
     --logo-body: #cc3f7e;
     --span-bg: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--background-secondary);
   }
   .facebook {
     --primary: #3b5998;
@@ -82,6 +94,9 @@
     --logo-shadow: #000000;
     --logo-body: #3b5998;
     --span-bg: linear-gradient(to right, #3b5998, #4267b2, #5578c2);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
   }
   .discord {
     --primary: #7289da;
@@ -98,6 +113,9 @@
     --logo-shadow: #000000;
     --logo-body: #7289da;
     --span-bg: linear-gradient(to right, #7289da, #7289da, #7289da);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
   }
   .netflix {
     --primary: #ff0000;
@@ -114,6 +132,9 @@
     --logo-shadow: #000000;
     --logo-body: #ff0000;
     --span-bg: linear-gradient(to right, #ff0000, #ff0000, #ff0000);
+    --accent: var(--secondary);
+    --surface: var(--background-secondary);
+    --border: var(--button-secondary);
   }
   .reddit {
     --primary: #ff4500;
@@ -130,6 +151,9 @@
     --logo-shadow: #000000;
     --logo-body: #ff4500;
     --span-bg: linear-gradient(to right, #ff4500, #ff6347, #ff4500);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
   }
   .twilight {
     --primary: #a296e0;
@@ -146,6 +170,47 @@
     --logo-shadow: #6d6875;
     --logo-body: #8d82c4;
     --span-bg: linear-gradient(to right, #8d82c4, #f7b7a3, #7d9dbf);
+    --accent: var(--secondary);
+    --surface: var(--dropdown);
+    --border: var(--button-secondary);
+  }
+  .terminal {
+    --primary: #0a0a0a;
+    --secondary: #00e5a0;
+    --background: #f7f7f5;
+    --background-secondary: #efefec;
+    --button: #0a0a0a;
+    --button-text: #f7f7f5;
+    --text-secondary: #6b6b6b;
+    --dropdown: #ffffff;
+    --dropdown-hover: #f0f0f0;
+    --button-secondary: #efefec;
+    --selected: #00e5a080;
+    --logo-shadow: #0a0a0a;
+    --logo-body: #00e5a0;
+    --span-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #00e5a0 100%);
+    --accent: #00e5a0;
+    --surface: #ffffff;
+    --border: #e0e0db;
+  }
+  .terminal-dark {
+    --primary: #f0f0f0;
+    --secondary: #00e5a0;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #00e5a0;
+    --button-text: #0d0d0d;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #00e5a040;
+    --logo-shadow: #00e5a0;
+    --logo-body: #00e5a0;
+    --span-bg: linear-gradient(135deg, #00e5a0 0%, #00b8ff 50%, #7c3aed 100%);
+    --accent: #00e5a0;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
   }
 }
 
@@ -170,4 +235,29 @@
   body {
     @apply bg-background text-primary;
   }
+}
+
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(to right, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
 }

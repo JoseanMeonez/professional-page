@@ -5,22 +5,26 @@ import {
   NextIntlClientProvider,
   useMessages
 } from 'next-intl'
-import { Inter, Rubik, Space_Grotesk } from 'next/font/google'
+import { JetBrains_Mono, Rubik, Syne } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
 import { Header } from './components/Header'
+import Footer from './components/Footer'
+import ScrollProgress from './components/ScrollProgress'
 import './globals.css'
 
-const inter = Inter({
+const syne = Syne({
   subsets: ['latin'],
-  variable: '--inter'
+  weight: ['400', '600', '800'],
+  variable: '--font-syne'
 })
 const rubik = Rubik({
   subsets: ['arabic'],
   variable: '--rubik'
 })
-const space_grotesk = Space_Grotesk({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-space-grotesk'
+  weight: ['400', '500'],
+  variable: '--font-jetbrains-mono'
 })
 export const metadata: Metadata = {
   title: 'Andrés Meoñez | Full Stack Developer',
@@ -39,14 +43,14 @@ export default function RootLayout({
     <html
       lang={locale}
       dir={locale === 'ar' || locale == 'fa' ? 'rtl' : 'ltr'}
-      className={`${space_grotesk.variable} ${rubik.variable} scroll-smooth`}
+      className={`${syne.variable} ${rubik.variable} ${jetbrainsMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <body>
         <ThemeProvider
           attribute='class'
-          defaultTheme='facebook'
-          themes={['facebook']}
+          defaultTheme='terminal'
+          themes={['terminal', 'terminal-dark', 'facebook', 'dark', 'discord', 'netflix', 'reddit', 'sunset', 'instagram', 'twilight']}
           enableSystem={false}
           disableTransitionOnChange
         >
@@ -65,8 +69,10 @@ export default function RootLayout({
               color='var(--primary)'
               showSpinner={false}
             />
+            <ScrollProgress />
             <Header locale={locale} />
             <main className='mx-auto max-w-screen-2xl'>{children}</main>
+            <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
