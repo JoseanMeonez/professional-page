@@ -212,6 +212,139 @@
     --surface: #1a1a1a;
     --border: #2a2a2a;
   }
+  .facebook-dark {
+    --primary: #f0f0f0;
+    --secondary: #4267b2;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #3b5998;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #3b599840;
+    --logo-shadow: #4267b2;
+    --logo-body: #4267b2;
+    --span-bg: linear-gradient(to right, #3b5998, #4267b2, #5578c2);
+    --accent: #4267b2;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  .discord-dark {
+    --primary: #f0f0f0;
+    --secondary: #7289da;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #7289da;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #7289da40;
+    --logo-shadow: #7289da;
+    --logo-body: #7289da;
+    --span-bg: linear-gradient(to right, #5865f2, #7289da, #99aab5);
+    --accent: #7289da;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  .netflix-dark {
+    --primary: #f0f0f0;
+    --secondary: #e50914;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #e50914;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #e5091440;
+    --logo-shadow: #e50914;
+    --logo-body: #e50914;
+    --span-bg: linear-gradient(to right, #e50914, #b00710, #e50914);
+    --accent: #e50914;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  .reddit-dark {
+    --primary: #f0f0f0;
+    --secondary: #ff6347;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #ff4500;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #ff450040;
+    --logo-shadow: #ff4500;
+    --logo-body: #ff4500;
+    --span-bg: linear-gradient(to right, #ff4500, #ff6347, #ff4500);
+    --accent: #ff4500;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  .sunset-dark {
+    --primary: #f0f0f0;
+    --secondary: #ff9966;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #ff6b6b;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #ff6b6b40;
+    --logo-shadow: #ff6b6b;
+    --logo-body: #ff6b6b;
+    --span-bg: linear-gradient(to right, #ff6b6b, #ff9966, #ffcc66);
+    --accent: #ff9966;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  .instagram-dark {
+    --primary: #f0f0f0;
+    --secondary: #fcb045;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #cc3f7e;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #cc3f7e40;
+    --logo-shadow: #cc3f7e;
+    --logo-body: #cc3f7e;
+    --span-bg: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+    --accent: #fcb045;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
+  .twilight-dark {
+    --primary: #f0f0f0;
+    --secondary: #d84c21;
+    --background: #0d0d0d;
+    --background-secondary: #151515;
+    --button: #7d9dbf;
+    --button-text: #ffffff;
+    --text-secondary: #888888;
+    --dropdown: #1a1a1a;
+    --dropdown-hover: #252525;
+    --button-secondary: #1a1a1a;
+    --selected: #8d82c440;
+    --logo-shadow: #8d82c4;
+    --logo-body: #8d82c4;
+    --span-bg: linear-gradient(to right, #8d82c4, #f7b7a3, #7d9dbf);
+    --accent: #8d82c4;
+    --surface: #1a1a1a;
+    --border: #2a2a2a;
+  }
 }
 
 @layer base {

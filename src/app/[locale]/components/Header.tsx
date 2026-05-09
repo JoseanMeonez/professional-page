@@ -30,10 +30,12 @@ export const Header: FC<Props> = ({ locale }) => {
     setScrolled(y > 20)
   })
 
-  const isDark = theme === 'terminal-dark'
+  const isDark = theme?.endsWith('-dark')
+  const baseTheme = isDark ? theme!.replace('-dark', '') : (theme ?? 'terminal')
 
   function toggleDark() {
-    setTheme(isDark ? 'terminal' : 'terminal-dark')
+    if (theme === 'dark') { setTheme('terminal'); return }
+    setTheme(isDark ? baseTheme : `${baseTheme}-dark`)
   }
 
   return (

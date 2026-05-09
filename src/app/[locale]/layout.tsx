@@ -50,7 +50,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute='class'
           defaultTheme='terminal'
-          themes={['terminal', 'terminal-dark', 'facebook', 'dark', 'discord', 'netflix', 'reddit', 'sunset', 'instagram', 'twilight']}
+          themes={['terminal', 'terminal-dark', 'facebook', 'facebook-dark', 'discord', 'discord-dark', 'netflix', 'netflix-dark', 'reddit', 'reddit-dark', 'sunset', 'sunset-dark', 'instagram', 'instagram-dark', 'twilight', 'twilight-dark', 'dark']}
           enableSystem={false}
           disableTransitionOnChange
         >
