@@ -1,7 +1,7 @@
 'use client'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Button from './components/Button'
 import ContactButton from './components/ContactButton'
 import ProjectCard from './components/ProjectCard'
@@ -91,6 +91,11 @@ export default function DashboardPage() {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all')
   const [roleIndex, setRoleIndex] = useState(0)
 
+  const heroRef = useRef<HTMLElement>(null)
+  const heroMouseX = useMotionValue(-9999)
+  const heroMouseY = useMotionValue(-9999)
+  const spotlightBg = useMotionTemplate`radial-gradient(500px circle at ${heroMouseX}px ${heroMouseY}px, var(--accent)30, transparent 70%)`
+
   useEffect(() => {
     const id = setInterval(() => {
       setRoleIndex((i) => (i + 1) % ROLES.length)
@@ -106,9 +111,25 @@ export default function DashboardPage() {
   return (
     <div>
       {/* Hero */}
-      <section className='relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-8 py-24'>
+      <section
+        ref={heroRef}
+        onMouseMove={(e) => {
+          const rect = heroRef.current?.getBoundingClientRect()
+          if (rect) {
+            heroMouseX.set(e.clientX - rect.left)
+            heroMouseY.set(e.clientY - rect.top)
+          }
+        }}
+        onMouseLeave={() => {
+          heroMouseX.set(-9999)
+          heroMouseY.set(-9999)
+        }}
+        className='relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-8 py-24'
+      >
         {/* subtle grid background */}
         <div className='hero-grid pointer-events-none absolute inset-0 opacity-40' />
+        {/* lantern spotlight following cursor */}
+        <motion.div className='pointer-events-none absolute inset-0' style={{ background: spotlightBg }} />
         {/* radial fade over the grid */}
         <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,transparent_30%,var(--background)_100%)]' />
 

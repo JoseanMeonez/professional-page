@@ -42,7 +42,7 @@ export const Header: FC<Props> = ({ locale }) => {
     <motion.header
       className='sticky top-0 z-40 transition-colors duration-300'
       style={{
-        backgroundColor: scrolled ? 'var(--background)' : 'transparent',
+        backgroundColor: scrolled ? 'color-mix(in srgb, var(--background) 80%, transparent)' : 'transparent',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',

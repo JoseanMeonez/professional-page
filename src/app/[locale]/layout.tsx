@@ -138,7 +138,7 @@ export default function RootLayout({
             />
             <ScrollProgress />
             <Header locale={locale} />
-            <main className='mx-auto max-w-screen-2xl'>{children}</main>
+            <main>{children}</main>
             <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
