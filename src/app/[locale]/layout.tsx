@@ -46,6 +46,13 @@ export default function RootLayout({
       className={`${syne.variable} ${rubik.variable} ${jetbrainsMono.variable} scroll-smooth`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(!localStorage.getItem('theme')){localStorage.setItem('theme',window.matchMedia('(prefers-color-scheme: dark)').matches?'terminal-dark':'terminal')}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
         <ThemeProvider
           attribute='class'
