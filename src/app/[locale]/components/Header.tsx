@@ -1,11 +1,12 @@
 'use client'
+import { gsap, ScrollTrigger, useGSAP } from '@/src/lib/gsap'
 import { Link } from '@/src/navigation'
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import { FC, useEffect, useState } from 'react'
+import { useSelectedLayoutSegments } from 'next/navigation'
+import { FC, useEffect, useRef, useState } from 'react'
+import { FaGithub } from 'react-icons/fa'
 import { HiMoon, HiSun } from 'react-icons/hi2'
-import { PiCode } from 'react-icons/pi'
-import GithubIcon from '../../icons/github'
+import { RiCloseLine, RiMenu4Line } from 'react-icons/ri'
 import LangSwitcher from './LangSwitcher'
 
 interface Props {
@@ -13,98 +14,134 @@ interface Props {
 }
 
 const NAV_LINKS = [
-  { href: '#skills', label: 'Skills' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
+  { hash: '#services', label: 'Services' },
+  { hash: '#skills', label: 'Stack' },
+  { hash: '#experience', label: 'Experience' },
+  { hash: '#projects', label: 'Projects' },
+  { hash: '#contact', label: 'Contact' }
 ]
 
 export const Header: FC<Props> = ({ locale }) => {
-  const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const { scrollY } = useScroll()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+  const segments = useSelectedLayoutSegments()
+  const header = useRef<HTMLElement>(null)
 
   useEffect(() => setMounted(true), [])
 
-  useMotionValueEvent(scrollY, 'change', (y) => {
-    setScrolled(y > 20)
+  // Anchors only resolve on the home page; elsewhere link back to it.
+  const isHome = segments.length === 0
+  const hrefFor = (hash: string) => (isHome ? hash : `/${locale}${hash}`)
+  const isDark = resolvedTheme === 'dark'
+
+  // Slide away while scrolling down, come back on scroll up.
+  useGSAP(() => {
+    const hide = gsap.to(header.current, {
+      yPercent: -120,
+      duration: 0.35,
+      ease: 'power2.out',
+      paused: true
+    })
+    ScrollTrigger.create({
+      start: 120,
+      end: 'max',
+      onUpdate: self => (self.direction === 1 ? hide.play() : hide.reverse()),
+      onLeaveBack: () => hide.reverse()
+    })
   })
 
-  const isDark = theme?.endsWith('-dark')
-  const baseTheme = isDark ? theme!.replace('-dark', '') : (theme ?? 'terminal')
-
-  function toggleDark() {
-    if (theme === 'dark') { setTheme('terminal'); return }
-    setTheme(isDark ? baseTheme : `${baseTheme}-dark`)
-  }
-
   return (
-    <motion.header
-      className='sticky top-0 z-40 transition-colors duration-300'
-      style={{
-        backgroundColor: scrolled ? 'color-mix(in srgb, var(--background) 80%, transparent)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-      }}
+    <header
+      ref={header}
+      className='fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5'
     >
-      <div className='mx-auto flex max-w-screen-2xl flex-row items-center justify-between p-5'>
-        <Link lang={locale} href='/'>
-          <div className='flex flex-row items-center gap-2'>
-            <PiCode className='size-7' />
-            <strong className='select-none font-display text-xl'>Andrés Meoñez</strong>
-          </div>
+      <div className='nb-card mx-auto flex h-16 max-w-screen-2xl items-center justify-between gap-3 bg-paper px-3 sm:px-4'>
+        <Link
+          lang={locale}
+          href='/'
+          className='group flex items-center gap-2.5'
+          aria-label='Home'
+        >
+          <span className='nb-border grid size-10 -rotate-6 place-items-center rounded-md bg-nb-yellow font-display text-sm text-on-accent shadow-nb-sm transition-transform group-hover:rotate-6'>
+            AM
+          </span>
+          <strong className='hidden select-none font-display text-lg uppercase tracking-tight sm:block'>
+            Andrés Meoñez
+          </strong>
         </Link>
 
-        <div className='flex flex-row items-center gap-4'>
-          <nav className='hidden items-center gap-6 md:flex'>
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className='group relative font-mono text-sm text-text-secondary transition-colors hover:text-primary'
-              >
-                {link.label}
-                <span className='absolute -bottom-0.5 left-0 h-px w-0 bg-accent transition-all duration-200 group-hover:w-full' />
-              </a>
-            ))}
-            <Link
-              lang={locale}
-              href='/about'
-              className='group relative font-mono text-sm text-text-secondary transition-colors hover:text-primary'
-            >
-              About
-              <span className='absolute -bottom-0.5 left-0 h-px w-0 bg-accent transition-all duration-200 group-hover:w-full' />
-            </Link>
-          </nav>
-
-          <div className='flex items-center gap-3'>
-            <LangSwitcher />
-
-            {mounted && (
-              <motion.button
-                onClick={toggleDark}
-                whileTap={{ scale: 0.88 }}
-                className='flex size-8 items-center justify-center rounded-full border border-border-theme bg-surface text-text-secondary transition-colors hover:border-accent hover:text-accent'
-                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-              >
-                {isDark ? <HiSun className='size-4' /> : <HiMoon className='size-4' />}
-              </motion.button>
-            )}
-
+        <nav className='hidden items-center gap-1 lg:flex' aria-label='Main'>
+          {NAV_LINKS.map(link => (
             <a
-              href='https://github.com/JoseanMeonez'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-text-secondary transition-colors hover:text-primary'
+              key={link.hash}
+              href={hrefFor(link.hash)}
+              className='rounded-md border-2 border-transparent px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors hover:border-line hover:bg-nb-yellow hover:text-on-accent'
             >
-              <div className='size-7'>
-                <GithubIcon />
-              </div>
+              {link.label}
             </a>
-          </div>
+          ))}
+        </nav>
+
+        <div className='flex items-center gap-2'>
+          <LangSwitcher />
+
+          <button
+            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+            className='nb-btn size-10 bg-nb-violet !p-0'
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {mounted &&
+              (isDark ? (
+                <HiSun className='size-5' />
+              ) : (
+                <HiMoon className='size-5' />
+              ))}
+          </button>
+
+          <a
+            href='https://github.com/JoseanMeonez'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='nb-btn hidden size-10 bg-nb-lime !p-0 sm:inline-flex'
+            aria-label='GitHub'
+          >
+            <FaGithub className='size-5' />
+          </a>
+
+          <button
+            onClick={() => setMenuOpen(o => !o)}
+            className='nb-btn size-10 bg-nb-pink !p-0 lg:hidden'
+            aria-label='Toggle menu'
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? (
+              <RiCloseLine className='size-6' />
+            ) : (
+              <RiMenu4Line className='size-6' />
+            )}
+          </button>
         </div>
       </div>
-    </motion.header>
+
+      {menuOpen && (
+        <nav
+          className='nb-card mx-auto mt-3 grid max-w-screen-2xl gap-2 bg-nb-yellow p-3 lg:hidden'
+          aria-label='Mobile'
+        >
+          {NAV_LINKS.map((link, i) => (
+            <a
+              key={link.hash}
+              href={hrefFor(link.hash)}
+              onClick={() => setMenuOpen(false)}
+              className='nb-border flex items-center justify-between rounded-md bg-paper px-4 py-3 font-display text-lg uppercase text-ink'
+            >
+              {link.label}
+              <span className='font-mono text-xs'>0{i + 1}</span>
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
   )
 }
