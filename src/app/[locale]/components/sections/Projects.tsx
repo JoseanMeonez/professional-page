@@ -5,11 +5,12 @@ import { useRef, useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { HiArrowUpRight } from 'react-icons/hi2'
 import FeaturedCripco from './FeaturedCripco'
+import FeaturedMcp from './FeaturedMcp'
 
-type Category = 'frontend' | 'backend' | 'fullstack'
+type Category = 'ai' | 'frontend' | 'backend' | 'fullstack'
 type Filter = 'all' | Category
 
-const FILTERS: Filter[] = ['all', 'fullstack', 'backend', 'frontend']
+const FILTERS: Filter[] = ['all', 'ai', 'fullstack', 'backend', 'frontend']
 
 // Titles and descriptions live in messages under Projects.items.<id>.
 const PROJECTS: {
@@ -26,6 +27,13 @@ const PROJECTS: {
     demo: 'https://cripco-hn.org',
     categories: ['fullstack', 'frontend'],
     color: 'bg-nb-lime'
+  },
+  {
+    id: 'mcp',
+    technologies: ['TypeScript', 'Node.js', 'MCP SDK', 'Zod', 'Vitest'],
+    github: 'https://github.com/JoseanMeonez/servicenow-mcp',
+    categories: ['ai', 'backend'],
+    color: 'bg-nb-violet'
   },
   {
     id: 'bytes',
@@ -68,7 +76,7 @@ const PROJECTS: {
     technologies: ['C#', '.NET', 'Clean Architecture', 'CQRS'],
     github: 'https://github.com/JoseanMeonez/Clean-Architecture',
     categories: ['backend'],
-    color: 'bg-nb-violet'
+    color: 'bg-nb-cyan'
   },
   {
     id: 'articles',
@@ -81,7 +89,7 @@ const PROJECTS: {
     id: 'aiskills',
     technologies: ['Python', 'AI/ML'],
     github: 'https://github.com/JoseanMeonez/AI-Skills',
-    categories: ['backend'],
+    categories: ['ai', 'backend'],
     color: 'bg-nb-red'
   }
 ]
@@ -179,6 +187,7 @@ export default function Projects() {
         </div>
 
         <FeaturedCripco />
+        <FeaturedMcp />
 
         <div
           className='mb-10 mt-20 flex flex-wrap items-center gap-3'

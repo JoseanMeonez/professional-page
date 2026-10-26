@@ -11,7 +11,7 @@ const HeroScene = dynamic(() => import('../three/HeroScene'), { ssr: false })
 
 const STATS = [
   { value: '4+', label: 'years', color: 'bg-nb-yellow' },
-  { value: '8', label: 'featured', color: 'bg-nb-pink' },
+  { value: '9', label: 'featured', color: 'bg-nb-pink' },
   { value: '27', label: 'technologies', color: 'bg-nb-cyan' }
 ] as const
 

@@ -131,6 +131,7 @@
     "filterGroup": "Filtrer les projets",
     "filters": {
       "all": "Tous",
+      "ai": "IA",
       "fullstack": "Full Stack",
       "backend": "Backend",
       "frontend": "Frontend"
@@ -141,6 +142,10 @@
       "cripco": {
         "title": "Cripco - Portail de rééducation",
         "description": "Plateforme pour un centre de rééducation avec dossiers patients, rendez-vous, thérapeutes et plans de traitement, ainsi qu'un site public et des notifications WhatsApp"
+      },
+      "mcp": {
+        "title": "Serveur MCP ServiceNow",
+        "description": "Serveur MCP qui permet aux agents IA de travailler avec ServiceNow en toute sécurité : les API Table, Aggregate et de schéma exposées comme outils, derrière un contrôle d'écriture par update set et des pré-vérifications de risque"
       },
       "bytes": {
         "title": "Bytes - Site d'entreprise",
@@ -187,6 +192,28 @@
       "Rappels et notifications WhatsApp"
     ],
     "visit": "Visiter cripco-hn.org"
+  },
+  "Mcp": {
+    "sticker": "Open source",
+    "featured": "À la une · IA",
+    "tag": "IA · MCP · ServiceNow",
+    "subtitle": "Serveur MCP pour ServiceNow",
+    "description": "Un serveur Model Context Protocol autonome qui permet aux agents IA comme Claude, Copilot ou opencode d'interroger et de modifier une instance ServiceNow en toute sécurité — chaque écriture passe par un vrai update set, une activation explicite et des contrôles de risque fondés sur la documentation.",
+    "features": [
+      "API Table, Aggregate et de schéma comme outils MCP",
+      "Contrôle d'écriture : aucun changement tant que l'update set est « Default »",
+      "Les outils d'écriture ne sont enregistrés que s'ils sont explicitement activés",
+      "Pré-vérification des risques avec des jetons signés à courte durée",
+      "Recherche dans la documentation ServiceNow et bonnes pratiques intégrées",
+      "Compatible avec Claude Code, Claude Desktop, Copilot et tout client MCP"
+    ],
+    "github": "Voir sur GitHub",
+    "terminal": {
+      "prompt": "Ajoute un champ « Risk score » à change_request",
+      "risk": "Risque : moyen · jeton de pré-vérification signé émis",
+      "refused": "Refusé : votre update set actuel est « Default »",
+      "created": "u_risk_score créé dans l'update set « CHG risk score »"
+    }
   },
   "Contact": {
     "chip": "05 — Contact",

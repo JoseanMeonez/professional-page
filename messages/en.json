@@ -131,6 +131,7 @@
     "filterGroup": "Filter projects",
     "filters": {
       "all": "All",
+      "ai": "AI",
       "fullstack": "Full Stack",
       "backend": "Backend",
       "frontend": "Frontend"
@@ -141,6 +142,10 @@
       "cripco": {
         "title": "Cripco - Rehabilitation Portal",
         "description": "Rehabilitation center platform with patient records, appointments, therapists and treatment plans, plus a public website and WhatsApp notifications"
+      },
+      "mcp": {
+        "title": "ServiceNow MCP Server",
+        "description": "MCP server that lets AI agents work with ServiceNow safely: Table, Aggregate and schema APIs exposed as tools, behind an update-set write gate and risk prechecks"
       },
       "bytes": {
         "title": "Bytes - Company Website",
@@ -187,6 +192,28 @@
       "WhatsApp reminders & notifications"
     ],
     "visit": "Visit cripco-hn.org"
+  },
+  "Mcp": {
+    "sticker": "Open source",
+    "featured": "Featured · AI",
+    "tag": "AI · MCP · ServiceNow",
+    "subtitle": "MCP server for ServiceNow",
+    "description": "A standalone Model Context Protocol server that lets AI agents like Claude, Copilot or opencode query and change a ServiceNow instance safely — every write is gated behind a real update set, an explicit opt-in and docs-backed risk checks.",
+    "features": [
+      "Table, Aggregate & schema APIs as MCP tools",
+      "Write gate: no changes while the update set is \"Default\"",
+      "Write tools are only registered when explicitly enabled",
+      "Risk precheck with short-lived signed tokens",
+      "Built-in ServiceNow docs search & best practices",
+      "Works with Claude Code, Claude Desktop, Copilot and any MCP client"
+    ],
+    "github": "View on GitHub",
+    "terminal": {
+      "prompt": "Add a \"Risk score\" field to change_request",
+      "risk": "Risk: medium · signed precheck token issued",
+      "refused": "Refused: your current update set is \"Default\"",
+      "created": "u_risk_score created in update set \"CHG risk score\""
+    }
   },
   "Contact": {
     "chip": "05 — Contact",

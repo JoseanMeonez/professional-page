@@ -131,6 +131,7 @@
     "filterGroup": "Filtrar proyectos",
     "filters": {
       "all": "Todos",
+      "ai": "IA",
       "fullstack": "Full Stack",
       "backend": "Backend",
       "frontend": "Frontend"
@@ -141,6 +142,10 @@
       "cripco": {
         "title": "Cripco - Portal de Rehabilitación",
         "description": "Plataforma para un centro de rehabilitación con expedientes de pacientes, citas, terapeutas y planes de tratamiento, además de un sitio web público y notificaciones por WhatsApp"
+      },
+      "mcp": {
+        "title": "Servidor MCP de ServiceNow",
+        "description": "Servidor MCP que permite a agentes de IA trabajar con ServiceNow de forma segura: las APIs Table, Aggregate y de esquema expuestas como tools, protegidas por un control de escritura por update set y prevalidaciones de riesgo"
       },
       "bytes": {
         "title": "Bytes - Sitio Web Corporativo",
@@ -187,6 +192,28 @@
       "Recordatorios y notificaciones por WhatsApp"
     ],
     "visit": "Visitar cripco-hn.org"
+  },
+  "Mcp": {
+    "sticker": "Código abierto",
+    "featured": "Destacado · IA",
+    "tag": "IA · MCP · ServiceNow",
+    "subtitle": "Servidor MCP para ServiceNow",
+    "description": "Un servidor Model Context Protocol independiente que permite a agentes de IA como Claude, Copilot u opencode consultar y modificar una instancia de ServiceNow de forma segura: cada escritura pasa por un update set real, una habilitación explícita y validaciones de riesgo basadas en la documentación.",
+    "features": [
+      "APIs Table, Aggregate y de esquema como tools MCP",
+      "Control de escritura: sin cambios mientras el update set sea \"Default\"",
+      "Las tools de escritura solo se registran si se habilitan explícitamente",
+      "Prevalidación de riesgo con tokens firmados de corta duración",
+      "Búsqueda en la documentación de ServiceNow y buenas prácticas integradas",
+      "Funciona con Claude Code, Claude Desktop, Copilot y cualquier cliente MCP"
+    ],
+    "github": "Ver en GitHub",
+    "terminal": {
+      "prompt": "Agrega un campo \"Risk score\" a change_request",
+      "risk": "Riesgo: medio · token de prevalidación firmado emitido",
+      "refused": "Rechazado: tu update set actual es \"Default\"",
+      "created": "u_risk_score creado en el update set \"CHG risk score\""
+    }
   },
   "Contact": {
     "chip": "05 — Contacto",
