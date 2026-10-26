@@ -2,6 +2,7 @@
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
 import { useRef } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
+import { HiArrowUpRight } from 'react-icons/hi2'
 import {
   PiCalendarCheckBold,
   PiChartBarBold,
@@ -179,6 +180,15 @@ export default function FeaturedCripco() {
               </span>
             ))}
           </div>
+
+          <a
+            href='https://cripco-hn.org'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='nb-btn mt-8 bg-[#0a0a0a] px-5 py-3 !text-nb-lime'
+          >
+            Visit cripco-hn.org <HiArrowUpRight className='size-4' />
+          </a>
         </div>
 
         {/* Dashboard mock */}
@@ -193,7 +203,7 @@ export default function FeaturedCripco() {
                 <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-orange' />
                 <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-lime' />
                 <span className='ml-2 flex-1 truncate rounded border-2 border-[#0a0a0a] bg-white px-2 font-mono text-[10px] font-bold'>
-                  cripco / dashboard / citas
+                  cripco-hn.org / dashboard / citas
                 </span>
               </div>
               <div className='grid grid-cols-[auto_1fr]'>

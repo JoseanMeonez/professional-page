@@ -39,7 +39,7 @@ const ENTRIES = [
     color: 'bg-nb-cyan'
   },
   {
-    period: '2021 – 2024',
+    period: '2021 – Present',
     role: 'Freelance Full Stack Software Engineer',
     organization: 'Bytes',
     description:
