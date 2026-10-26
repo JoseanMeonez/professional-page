@@ -10,6 +10,9 @@ import FeaturedMcp from './FeaturedMcp'
 type Category = 'ai' | 'frontend' | 'backend' | 'fullstack'
 type Filter = 'all' | Category
 
+// Tech chips shown per card before collapsing the rest into "+N".
+const MAX_TECH = 4
+
 const FILTERS: Filter[] = ['all', 'ai', 'fullstack', 'backend', 'frontend']
 
 // Titles and descriptions live in messages under Projects.items.<id>.
@@ -117,7 +120,7 @@ export default function Projects() {
     setFilter(value)
   }
 
-  // Entrance: heading slides in sideways; the rail glides in from the right.
+  // Entrance: heading slides in sideways; the rail's cards fade up in sequence.
   useGSAP(
     () => {
       const mm = gsap.matchMedia()
@@ -144,24 +147,17 @@ export default function Projects() {
           })
           .fromTo(
             '.project-card',
+            { y: 24, opacity: 0, transition: 'none' },
             {
-              x: 140,
-              rotateY: -18,
-              opacity: 0,
-              transformOrigin: '0% 50%',
-              transition: 'none'
-            },
-            {
-              x: 0,
-              rotateY: 0,
+              y: 0,
               opacity: 1,
-              duration: 1.1,
-              ease: 'power3.out',
-              stagger: 0.09,
+              duration: 0.7,
+              ease: 'power2.out',
+              stagger: 0.08,
               // Hand transforms (and the hover transition) back to CSS.
               clearProps: 'transform,opacity,transition'
             },
-            0.15
+            0.1
           )
       })
     },
@@ -250,7 +246,7 @@ export default function Projects() {
                 </button>
               ))}
             </div>
-            <div className='ml-auto hidden gap-3 sm:flex'>
+            <div className='ml-auto flex gap-3'>
               <button
                 onClick={() => slide(-1)}
                 className='nb-btn size-11 bg-paper !p-0 !text-ink'
@@ -270,7 +266,7 @@ export default function Projects() {
 
           <div
             ref={rail}
-            className='projects-grid -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-6 overflow-x-auto px-5 pb-6 pt-2 [perspective:1400px]'
+            className='projects-grid -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-6 overflow-x-auto px-5 pb-6 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
           >
             {PROJECTS.map((project, i) => {
               const visible =
@@ -278,58 +274,64 @@ export default function Projects() {
               return (
                 <article
                   key={project.id}
-                  className={`project-card nb-card nb-lift flex w-[min(82vw,22rem)] shrink-0 snap-start flex-col overflow-hidden bg-paper ${visible ? '' : 'hidden'}`}
+                  className={`project-card nb-card nb-lift flex w-full shrink-0 snap-start flex-col overflow-hidden bg-paper sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] ${visible ? '' : 'hidden'}`}
                 >
                   <div
-                    className={`flex items-center justify-between border-b-3 border-line ${project.color} px-5 py-[clamp(0.4rem,1.3svh,0.75rem)] text-on-accent`}
+                    className={`flex items-center justify-between gap-3 border-b-3 border-line ${project.color} px-4 py-[clamp(0.4rem,1.3svh,0.7rem)] text-on-accent`}
                   >
-                    <span className='font-mono text-xs font-bold uppercase'>
+                    <span className='truncate font-mono text-[11px] font-bold uppercase'>
                       {project.categories
                         .map(c => t(`filters.${c}`))
                         .join(' · ')}
                     </span>
-                    <span className='font-display text-2xl'>
+                    <span className='font-display text-2xl leading-none'>
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
+
                   <div className='flex flex-1 flex-col p-[clamp(0.9rem,2.5svh,1.25rem)]'>
-                    <h3 className='font-display text-[clamp(1.15rem,3svh,1.5rem)] uppercase leading-tight'>
+                    {/* Fixed line counts keep every card in the rail the same height. */}
+                    <h3 className='line-clamp-3 min-h-[2.5em] font-display text-[clamp(1.1rem,2.8svh,1.4rem)] uppercase leading-[1.25] sm:line-clamp-2'>
                       {t(`items.${project.id}.title`)}
                     </h3>
-                    <p className='mt-[1.5svh] flex-1 text-[clamp(0.8rem,2svh,0.95rem)] leading-relaxed text-muted'>
+                    <p className='mt-[1.2svh] line-clamp-3 text-[clamp(0.8rem,2svh,0.92rem)] leading-relaxed text-muted'>
                       {t(`items.${project.id}.description`)}
                     </p>
-                    {project.technologies.length > 0 && (
-                      <div className='mt-[2svh] flex flex-wrap gap-1.5'>
-                        {project.technologies.map(tech => (
-                          <span key={tech} className='nb-chip'>
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    <div className='mt-[2.5svh] flex gap-3'>
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          className='nb-btn bg-paper px-3 py-2 !text-ink'
-                        >
-                          <FaGithub className='size-4' /> {t('code')}
-                        </a>
-                      )}
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          className='nb-btn bg-nb-lime px-3 py-2'
-                        >
-                          {t('live')} <HiArrowUpRight className='size-4' />
-                        </a>
+                    <div className='mt-auto flex flex-wrap gap-1.5 pt-[2svh]'>
+                      {project.technologies.slice(0, MAX_TECH).map(tech => (
+                        <span key={tech} className='nb-chip !text-[10px]'>
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > MAX_TECH && (
+                        <span className='nb-chip !bg-bg-alt !text-[10px]'>
+                          +{project.technologies.length - MAX_TECH}
+                        </span>
                       )}
                     </div>
+                  </div>
+
+                  <div className='flex gap-3 border-t-2 border-dashed border-[color-mix(in_srgb,var(--line)_35%,transparent)] px-[clamp(0.9rem,2.5svh,1.25rem)] py-[clamp(0.6rem,1.8svh,0.9rem)]'>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='nb-btn bg-paper px-3 py-1.5 text-xs !text-ink'
+                      >
+                        <FaGithub className='size-4' /> {t('code')}
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='nb-btn bg-nb-lime px-3 py-1.5 text-xs'
+                      >
+                        {t('live')} <HiArrowUpRight className='size-4' />
+                      </a>
+                    )}
                   </div>
                 </article>
               )

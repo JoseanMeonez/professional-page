@@ -177,6 +177,10 @@
       }
     }
   },
+  "Featured": {
+    "overview": "Présentation",
+    "preview": "Aperçu"
+  },
   "Cripco": {
     "sticker": "Nouveau",
     "featured": "À la une",

@@ -158,14 +158,20 @@ export default function Hero() {
               <SplitWord text='Andrés' />
             </span>
             <span className='hero-line-2 relative block text-[clamp(2.6rem,min(13vw,14svh),10.5rem)]'>
-              {/* The yellow box is the word's own clip container, so it always sits right under the letters. */}
-              <SplitWord
-                text='Meoñez'
-                className='nb-border mt-[0.06em] -rotate-1 rounded-lg bg-nb-yellow px-[0.1em] pb-[0.04em] pt-[0.16em] text-[#0a0a0a] shadow-nb'
-              />
-              <span className='hero-sticker nb-border absolute -top-6 right-0 hidden size-[clamp(5rem,13svh,7rem)] rotate-12 place-items-center rounded-full bg-nb-pink text-center font-mono text-[11px] font-bold uppercase leading-tight text-on-accent shadow-nb sm:grid md:-right-10'>
-                <span className='animate-nb-spin absolute inset-1 rounded-full border-2 border-dashed border-[#0a0a0a]' />
-                {t.rich('sticker', { br: () => <br /> })}
+              {/* The sticker is pinned to the yellow box's top-right corner and sized
+                  off the viewport height like the title, so it sits on that corner at every size. */}
+              <span className='relative inline-block'>
+                {/* The yellow box is the word's own clip container, so it always sits right under the letters. */}
+                <SplitWord
+                  text='Meoñez'
+                  className='nb-border mt-[0.06em] -rotate-1 rounded-lg bg-nb-yellow px-[0.1em] pb-[0.04em] pt-[0.16em] text-[#0a0a0a] shadow-nb'
+                />
+                <span className='hero-sticker nb-border absolute -right-[clamp(2.25rem,6svh,3.5rem)] -top-[clamp(2rem,5svh,3rem)] hidden size-[clamp(4.5rem,12svh,6.5rem)] rotate-12 place-items-center rounded-full bg-nb-pink text-center font-mono text-[clamp(9px,1.4svh,12px)] font-bold uppercase leading-tight text-on-accent shadow-nb sm:grid'>
+                  <span className='animate-nb-spin absolute inset-1 rounded-full border-2 border-dashed border-[#0a0a0a]' />
+                  <span className='relative'>
+                    {t.rich('sticker', { br: () => <br /> })}
+                  </span>
+                </span>
               </span>
             </span>
           </h1>

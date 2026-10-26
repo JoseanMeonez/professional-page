@@ -1,8 +1,9 @@
 'use client'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
 import { useTranslations } from 'next-intl'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
+import FeaturedTabs, { FeaturedTab } from './FeaturedTabs'
 
 const STACK = ['TypeScript', 'Node.js', 'MCP SDK', 'Zod', 'Vitest']
 
@@ -46,6 +47,7 @@ const LINE_MARK = { prompt: '>', info: 'i', error: '✗', ok: '✓' } as const
 export default function FeaturedMcp() {
   const root = useRef<HTMLDivElement>(null)
   const t = useTranslations('Mcp')
+  const [tab, setTab] = useState<FeaturedTab>('overview')
 
   useGSAP(
     () => {
@@ -99,17 +101,21 @@ export default function FeaturedMcp() {
   return (
     <div ref={root} className='mt-[10svh] [perspective:1600px]'>
       <article className='mcp-card nb-card relative overflow-visible bg-nb-violet text-on-accent shadow-nb-xl will-change-transform [--line:#0a0a0a]'>
-        <span className='mcp-sticker nb-border absolute -left-4 -top-6 z-20 grid size-24 -rotate-12 place-items-center rounded-full bg-nb-yellow text-center font-display text-sm uppercase leading-tight shadow-nb sm:-left-6 sm:size-28'>
+        <span className='mcp-sticker nb-border absolute -right-3 -top-6 z-20 grid size-20 -rotate-12 place-items-center rounded-full bg-nb-yellow text-center font-display text-sm uppercase leading-tight shadow-nb sm:-left-6 sm:right-auto sm:size-28'>
           {t('sticker')}
           <br />
           MIT
         </span>
 
-        {/* Phones: info and terminal are two swipeable panels so the card fits one screen. */}
-        <div className='flex snap-x snap-mandatory overflow-x-auto rounded-[7px] sm:grid sm:overflow-visible lg:grid-cols-[1.15fr_1fr]'>
+        <FeaturedTabs
+          tab={tab}
+          onChange={setTab}
+          activeClassName='!text-nb-violet'
+        />
+        <div className='sm:grid lg:grid-cols-[1.15fr_1fr]'>
           {/* Terminal replay */}
           <div
-            className='order-last flex w-[88%] shrink-0 snap-start items-center border-l-3 border-[#0a0a0a] p-4 sm:w-auto sm:border-l-0 sm:border-t-3 sm:p-[clamp(1.25rem,4svh,2rem)] lg:order-first lg:border-r-3 lg:border-t-0'
+            className={`order-last items-center border-[#0a0a0a] p-4 sm:border-t-3 sm:p-[clamp(1.25rem,4svh,2rem)] lg:order-first lg:border-r-3 lg:border-t-0 ${tab === 'preview' ? 'flex' : 'hidden sm:flex'}`}
             aria-hidden
           >
             <div className='nb-border w-full overflow-hidden rounded-lg bg-[#0a0a0a] shadow-nb-lg'>
@@ -153,7 +159,9 @@ export default function FeaturedMcp() {
             </div>
           </div>
 
-          <div className='w-[88%] shrink-0 snap-start p-[clamp(1.25rem,4svh,2.5rem)] pt-12 sm:w-auto'>
+          <div
+            className={`p-[clamp(1.25rem,4svh,2.5rem)] sm:pt-12 ${tab === 'overview' ? '' : 'hidden sm:block'}`}
+          >
             <div className='mb-[1.5svh] flex flex-wrap gap-2'>
               <span className='nb-chip !border-[#0a0a0a] !bg-[#0a0a0a] !text-nb-violet'>
                 {t('featured')}

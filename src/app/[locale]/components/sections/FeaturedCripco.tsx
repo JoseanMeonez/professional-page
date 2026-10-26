@@ -1,9 +1,10 @@
 'use client'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
 import { useTranslations } from 'next-intl'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { HiArrowUpRight } from 'react-icons/hi2'
+import FeaturedTabs, { FeaturedTab } from './FeaturedTabs'
 import {
   PiCalendarCheckBold,
   PiChartBarBold,
@@ -48,6 +49,7 @@ const APPOINTMENTS: [number, number, number, string][] = [
 export default function FeaturedCripco() {
   const root = useRef<HTMLDivElement>(null)
   const t = useTranslations('Cripco')
+  const [tab, setTab] = useState<FeaturedTab>('overview')
 
   useGSAP(
     () => {
@@ -123,15 +125,21 @@ export default function FeaturedCripco() {
   return (
     <div ref={root} className='[perspective:1600px]'>
       <article className='cripco-card nb-card relative overflow-visible bg-nb-lime text-on-accent shadow-nb-xl will-change-transform [--line:#0a0a0a]'>
-        <span className='cripco-sticker nb-border absolute -right-4 -top-6 z-20 grid size-24 rotate-12 place-items-center rounded-full bg-nb-pink text-center font-display text-lg uppercase leading-none shadow-nb sm:-right-6 sm:size-28'>
+        <span className='cripco-sticker nb-border absolute -right-4 -top-6 z-20 grid size-20 rotate-12 place-items-center rounded-full bg-nb-pink text-center font-display text-lg uppercase leading-none shadow-nb sm:-right-6 sm:size-28'>
           {t('sticker')}
           <br />
           2026
         </span>
 
-        {/* Phones: info and mock are two swipeable panels so the card fits one screen. */}
-        <div className='flex snap-x snap-mandatory overflow-x-auto rounded-[7px] sm:grid sm:overflow-visible lg:grid-cols-[1fr_1.15fr]'>
-          <div className='w-[88%] shrink-0 snap-start p-[clamp(1.25rem,4svh,2.5rem)] sm:w-auto'>
+        <FeaturedTabs
+          tab={tab}
+          onChange={setTab}
+          activeClassName='!text-nb-lime'
+        />
+        <div className='sm:grid lg:grid-cols-[1fr_1.15fr]'>
+          <div
+            className={`p-[clamp(1.25rem,4svh,2.5rem)] ${tab === 'overview' ? '' : 'hidden sm:block'}`}
+          >
             <div className='mb-[1.5svh] flex flex-wrap gap-2'>
               <span className='nb-chip !border-[#0a0a0a] !bg-[#0a0a0a] !text-nb-lime'>
                 {t('featured')}
@@ -185,7 +193,7 @@ export default function FeaturedCripco() {
 
           {/* Dashboard mock */}
           <div
-            className='flex w-[88%] shrink-0 snap-start items-center border-l-3 border-[#0a0a0a] p-4 pb-12 sm:w-auto sm:border-l-0 sm:border-t-3 sm:p-[clamp(1.25rem,4svh,2rem)] sm:pb-14 lg:border-l-3 lg:border-t-0'
+            className={`items-center border-[#0a0a0a] p-4 pb-12 sm:border-t-3 sm:p-[clamp(1.25rem,4svh,2rem)] sm:pb-14 lg:border-l-3 lg:border-t-0 ${tab === 'preview' ? 'flex' : 'hidden sm:flex'}`}
             aria-hidden
           >
             <div className='relative w-full'>
