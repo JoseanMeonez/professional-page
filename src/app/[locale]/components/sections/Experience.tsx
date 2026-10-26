@@ -43,8 +43,16 @@ const ENTRIES = [
     role: 'Freelance Full Stack Software Engineer',
     organization: 'Bytes',
     description:
-      'Developed custom business applications and client websites using a broad full-stack toolset: Node, Go, .NET, Java, PHP/Laravel, Bootstrap, and Tailwind CSS.',
-    tags: ['Node.js', 'Go', '.NET', 'Java', 'PHP/Laravel', 'Tailwind CSS'],
+      'Developed custom business applications and client websites using a broad full-stack toolset: Node, Go, .NET, Java, Python, PHP/Laravel, Bootstrap, and Tailwind CSS.',
+    tags: [
+      'Node.js',
+      'Go',
+      '.NET',
+      'Java',
+      'Python',
+      'PHP/Laravel',
+      'Tailwind CSS'
+    ],
     type: 'Work',
     color: 'bg-nb-yellow'
   },

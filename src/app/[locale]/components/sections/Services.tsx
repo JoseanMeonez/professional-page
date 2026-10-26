@@ -121,20 +121,23 @@ export default function Services() {
 
           cards.slice(1).forEach((card, i) => {
             const below = cards.slice(0, i + 1)
-            tl.to(
-              card,
-              { yPercent: 0, rotate: i % 2 ? -2 : 2, duration: 1 },
-              i
-            ).to(
-              below,
-              {
-                scale: j => 1 - (i + 1 - j) * 0.05,
-                y: j => -(i + 1 - j) * 28,
-                filter: 'saturate(0.6) brightness(0.92)',
-                duration: 1
-              },
-              i
-            )
+            tl.to(card, { yPercent: 0, rotate: i % 2 ? -2 : 2, duration: 1 }, i)
+              .to(
+                below,
+                {
+                  scale: j => 1 - (i + 1 - j) * 0.05,
+                  y: j => -(i + 1 - j) * 28,
+                  duration: 1
+                },
+                i
+              )
+              .to(
+                // Dim buried cards with an overlay; animating CSS `filter` here
+                // rendered the cards as black boxes on some GPUs.
+                below.map(c => c.querySelector('.service-shade')),
+                { opacity: 0.22, duration: 1 },
+                i
+              )
           })
         }
       )
@@ -179,9 +182,13 @@ export default function Services() {
           {SERVICES.map(({ title, body, tags, icon: Icon, color }, i) => (
             <article
               key={title}
-              className={`service-card nb-card flex flex-col justify-between gap-8 ${color} p-7 text-on-accent will-change-transform sm:p-9`}
+              className={`service-card nb-card relative flex flex-col justify-between gap-8 ${color} p-7 text-on-accent sm:p-9`}
               style={{ zIndex: i + 1 }}
             >
+              <span
+                className='service-shade pointer-events-none absolute inset-0 rounded-[7px] bg-[#0a0a0a] opacity-0'
+                aria-hidden
+              />
               <div className='flex items-start justify-between gap-4'>
                 <span className='nb-border grid size-16 place-items-center rounded-lg bg-white shadow-nb-sm [--line:#0a0a0a]'>
                   <Icon className='size-8' />

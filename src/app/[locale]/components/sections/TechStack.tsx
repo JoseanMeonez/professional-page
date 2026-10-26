@@ -14,6 +14,7 @@ const CATEGORIES = [
     color: 'bg-nb-yellow',
     skills: [
       'React',
+      'React Native',
       'Next.js',
       'Angular',
       'TypeScript',
@@ -29,7 +30,7 @@ const CATEGORIES = [
   {
     label: 'Data',
     color: 'bg-nb-pink',
-    skills: ['SQL Server', 'PostgreSQL', 'MySQL', 'Prisma']
+    skills: ['SQL Server', 'PostgreSQL', 'MySQL', 'Entity Framework', 'Prisma']
   },
   {
     label: 'Platform & Tools',
@@ -38,7 +39,12 @@ const CATEGORIES = [
   }
 ]
 
-const tileColor = Object.fromEntries(TECH_ICONS.map(i => [i.name, i.tile]))
+const tileColor: Record<string, string> = {
+  ...Object.fromEntries(TECH_ICONS.map(i => [i.name, i.tile])),
+  // No logo tile of their own: borrow their platform's color.
+  'React Native': TECH_ICONS.find(i => i.name === 'React')!.tile,
+  'Entity Framework': TECH_ICONS.find(i => i.name === '.NET')!.tile
+}
 
 export default function TechStack() {
   const root = useRef<HTMLElement>(null)

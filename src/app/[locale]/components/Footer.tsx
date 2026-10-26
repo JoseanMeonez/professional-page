@@ -108,9 +108,6 @@ export default function Footer() {
           <span className='font-mono text-xs'>
             © {new Date().getFullYear()} Andrés Meoñez. All rights reserved.
           </span>
-          <span className='font-mono text-xs'>
-            Next.js · GSAP · Three.js · Tailwind CSS
-          </span>
           <a href={hrefFor('#top')} className='nb-btn bg-nb-yellow px-3 py-2'>
             Top <HiArrowUp className='size-4' />
           </a>

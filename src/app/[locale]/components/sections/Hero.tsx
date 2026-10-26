@@ -18,7 +18,7 @@ const ROLES = [
 const STATS = [
   { value: '4+', label: 'Years shipping', color: 'bg-nb-yellow' },
   { value: '7', label: 'Featured projects', color: 'bg-nb-pink' },
-  { value: '25', label: 'Technologies', color: 'bg-nb-cyan' }
+  { value: '27', label: 'Technologies', color: 'bg-nb-cyan' }
 ]
 
 function SplitWord({ text, className }: { text: string; className?: string }) {
