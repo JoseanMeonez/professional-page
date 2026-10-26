@@ -112,10 +112,12 @@ export default function Projects() {
   const applyFilter = (value: Filter) => {
     if (value === filter) return
     flipState.current = Flip.getState('.project-card')
+    // Same as the entrance: keep the CSS hover transition out of Flip's way.
+    gsap.set('.project-card', { transition: 'none' })
     setFilter(value)
   }
 
-  // Entrance: heading slides in sideways, cards fall forward in 3D.
+  // Entrance: heading slides in sideways; the rail glides in from the right.
   useGSAP(
     () => {
       const mm = gsap.matchMedia()
@@ -128,18 +130,39 @@ export default function Projects() {
           stagger: 0.1,
           scrollTrigger: { trigger: '.projects-heading', start: 'top 85%' }
         })
-        gsap.from('.project-card', {
-          rotateX: -80,
-          y: 80,
-          opacity: 0,
-          transformOrigin: '50% 0%',
-          duration: 0.9,
-          ease: 'back.out(1.3)',
-          stagger: { each: 0.08, grid: 'auto', from: 'start' },
-          // Hand transforms back to CSS so the hover lift works.
-          clearProps: 'transform,opacity',
-          scrollTrigger: { trigger: '.projects-grid', start: 'top 85%' }
-        })
+        // The cards' CSS hover transition on `transform` would chase every GSAP
+        // frame and stutter, so it's switched off until the entrance is done.
+        gsap
+          .timeline({
+            scrollTrigger: { trigger: '.projects-list', start: 'top 80%' }
+          })
+          .from('.projects-filters', {
+            y: 24,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out'
+          })
+          .fromTo(
+            '.project-card',
+            {
+              x: 140,
+              rotateY: -18,
+              opacity: 0,
+              transformOrigin: '0% 50%',
+              transition: 'none'
+            },
+            {
+              x: 0,
+              rotateY: 0,
+              opacity: 1,
+              duration: 1.1,
+              ease: 'power3.out',
+              stagger: 0.09,
+              // Hand transforms (and the hover transition) back to CSS.
+              clearProps: 'transform,opacity,transition'
+            },
+            0.15
+          )
       })
     },
     { scope: root }
@@ -157,13 +180,20 @@ export default function Projects() {
         onEnter: els =>
           gsap.fromTo(
             els,
-            { opacity: 0, scale: 0.6, rotate: -6 },
-            { opacity: 1, scale: 1, rotate: 0, duration: 0.5 }
+            { opacity: 0, scale: 0.85, y: 20 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out' }
           ),
         onLeave: els =>
-          gsap.to(els, { opacity: 0, scale: 0.6, rotate: 6, duration: 0.35 }),
+          gsap.to(els, {
+            opacity: 0,
+            scale: 0.85,
+            duration: 0.3,
+            ease: 'power2.in'
+          }),
         onComplete: () => {
-          gsap.set('.project-card', { clearProps: 'transform,opacity' })
+          gsap.set('.project-card', {
+            clearProps: 'transform,opacity,transition'
+          })
           ScrollTrigger.refresh()
         }
       })
@@ -200,7 +230,7 @@ export default function Projects() {
 
         {/* Filters + a swipeable rail of cards: the whole list fits one screen. */}
         <div className='projects-list mt-[10svh]'>
-          <div className='mb-[3svh] flex flex-wrap items-center gap-3'>
+          <div className='projects-filters mb-[3svh] flex flex-wrap items-center gap-3'>
             <div
               className='flex flex-wrap items-center gap-3'
               role='group'

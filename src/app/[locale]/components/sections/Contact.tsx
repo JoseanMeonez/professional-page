@@ -72,16 +72,26 @@ export default function Contact() {
           )
         })
 
-        gsap.from('.contact-tile', {
-          y: -120,
-          rotate: i => [-10, 8, -6, 12][i % 4],
-          opacity: 0,
-          duration: 0.9,
-          ease: 'bounce.out',
-          stagger: 0.1,
-          scrollTrigger: { trigger: '.contact-grid', start: 'top 85%' },
-          clearProps: 'transform,opacity'
-        })
+        // Hover transition off while GSAP drives `transform`, or it stutters.
+        gsap.fromTo(
+          '.contact-tile',
+          {
+            y: -120,
+            rotate: i => [-10, 8, -6, 12][i % 4],
+            opacity: 0,
+            transition: 'none'
+          },
+          {
+            y: 0,
+            rotate: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: 'bounce.out',
+            stagger: 0.1,
+            scrollTrigger: { trigger: '.contact-grid', start: 'top 85%' },
+            clearProps: 'transform,opacity,transition'
+          }
+        )
       })
     },
     { scope: root }
