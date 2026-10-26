@@ -1,77 +1,63 @@
 'use client'
-import { capitalize } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { usePathname, useSelectedLayoutSegments } from 'next/navigation'
-import React, { useState } from 'react'
+import { useParams, useSelectedLayoutSegments } from 'next/navigation'
+import React, { useRef, useState } from 'react'
 import { FiGlobe } from 'react-icons/fi'
-import Button from './Button'
+import { useOnClickOutside } from 'usehooks-ts'
+
+const OPTIONS = [
+  { country: 'English', code: 'en' },
+  { country: 'Deutsch', code: 'de' },
+  { country: 'Français', code: 'fr' },
+  { country: 'Español', code: 'es' },
+  { country: 'Русский', code: 'ru' },
+  { country: '日本語', code: 'ja' },
+  { country: 'العربية', code: 'ar' },
+  { country: 'فارسی', code: 'fa' }
+]
 
 const LangSwitcher: React.FC = () => {
-  interface Option {
-    country: string
-    code: string
-  }
-  const pathname = usePathname()
   const urlSegments = useSelectedLayoutSegments()
-
-  const [isOptionsExpanded, setIsOptionsExpanded] = useState(false)
-  const options: Option[] = [
-    { country: 'English', code: 'en' }, // Native name is the same
-    { country: 'Deutsch', code: 'de' },
-    { country: 'Français', code: 'fr' },
-    { country: 'Español', code: 'es' },
-    { country: 'Русский', code: 'ru' },
-    { country: '日本語', code: 'ja' },
-    { country: 'العربية', code: 'ar' },
-    { country: 'فارسی', code: 'fa' }
-  ]
+  const { locale } = useParams<{ locale: string }>()
+  const [open, setOpen] = useState(false)
+  const t = useTranslations('Nav')
+  const ref = useRef<HTMLDivElement>(null)
+  useOnClickOutside(ref, () => setOpen(false))
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='relative'>
-        <Button
-          className='text-destructive inline-flex w-full items-center justify-between gap-3'
-          size='small'
-          onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
-          onBlur={() => setIsOptionsExpanded(false)}
+    <div ref={ref} className='relative'>
+      <button
+        className='nb-btn h-10 bg-nb-cyan px-3'
+        onClick={() => setOpen(o => !o)}
+        aria-haspopup='menu'
+        aria-expanded={open}
+        aria-label={t('language')}
+      >
+        <FiGlobe className='size-4' />
+        <span>{locale}</span>
+      </button>
+      {open && (
+        <div
+          className='nb-card absolute right-0 mt-3 w-44 overflow-hidden bg-paper py-1'
+          role='menu'
         >
-          Language
-          <FiGlobe />
-        </Button>
-        {isOptionsExpanded && (
-          <div className='absolute right-0 mt-2 w-full origin-top-right rounded-md bg-dropdown shadow-lg'>
-            <div
-              className='py-1'
-              role='menu'
-              aria-orientation='vertical'
-              aria-labelledby='options-menu'
+          {OPTIONS.map(lang => (
+            <Link
+              key={lang.code}
+              lang={lang.code}
+              role='menuitem'
+              href={`/${lang.code}/${urlSegments.join('/')}`}
+              onClick={() => setOpen(false)}
+              className={`block px-4 py-2 font-mono text-sm font-bold transition-colors hover:bg-nb-yellow hover:text-on-accent ${
+                locale === lang.code ? 'bg-nb-lime text-on-accent' : 'text-ink'
+              }`}
             >
-              {options.map(lang => {
-                return (
-                  <Link
-                    key={lang.code}
-                    href={`/${lang.code}/${urlSegments.join('/')}`}
-                  >
-                    <button
-                      lang={lang.code}
-                      onMouseDown={e => {
-                        e.preventDefault()
-                      }}
-                      className={`block w-full px-4 py-2 text-left text-sm hover:bg-dropdownHover ${
-                        pathname === `/${lang.code}`
-                          ? 'bg-selected text-primary hover:bg-selected'
-                          : 'text-secondary'
-                      }`}
-                    >
-                      {capitalize(lang.country)}
-                    </button>
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        )}
-      </div>
+              {lang.country}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

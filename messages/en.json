@@ -1,19 +1,244 @@
 {
-  "About": "About",
-  "Support": "Support",
-  "Other": "Other",
-  "Theme": "Theme",
-  "An": "A",
-  "Booster": "Booster",
-  "to_Your_NextJS_Apps": "to Your NextJS Apps",
-  "An_approachable_performant_and_versatile_boilerplate_for_building_SSR_applications": "An approachable, performant and versatile boilerplate for building SSR applications.",
-  "Use_Template": "Use Template",
-  "Learn_More": "Learn More!",
-  "Approachable": "Approachable",
-  "Add_components_without_sending_additional_client_side_JavaScript_Built_on_the_latest_React_features": "Add components without sending additional client-side JavaScript. Built on the latest React features.",
-  "Automatic_Image_Font_and_Script_Optimizations_for_improved_UX_and_Core_Web_Vitals": "Automatic Image, Font, and Script Optimizations for improved UX and Core Web Vitals.",
-  "Versatile": "Versatile",
-  "A_rich_incredibly_adoptable_template_that_scales_between_a_small_showcase_website_and_a_full_size_app": "A rich, incredibly adoptable template that scales between a small showcase website and a full-size app.",
-  "This_is_a_simple_about_page_just_to_show_how_you_can_use_the_internationalization_in_different_pages": "This is a simple about page just to show how you can use the internationalization in different pages",
-  "Performant": "Performant"
+  "Meta": {
+    "title": "Andrés Meoñez | Full Stack Developer",
+    "description": "4+ years delivering enterprise software. Specialized in ServiceNow, .NET, Node.js, Go, Angular, React, and AI-assisted development."
+  },
+  "Nav": {
+    "services": "Services",
+    "stack": "Stack",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "about": "About",
+    "home": "Home",
+    "main": "Main",
+    "mobile": "Mobile",
+    "toggleMenu": "Toggle menu",
+    "lightMode": "Switch to light mode",
+    "darkMode": "Switch to dark mode",
+    "language": "Change language"
+  },
+  "Hero": {
+    "available": "Available for work",
+    "location": "Honduras · Remote",
+    "roles": [
+      "Software Engineer",
+      "ServiceNow Consultant",
+      "Full Stack Developer",
+      "Backend Architect"
+    ],
+    "sticker": "Full<br></br>Stack<br></br>Dev",
+    "bio": "4+ years delivering enterprise platform architecture. Skilled in <sn>ServiceNow</sn>, <net>.NET</net>, Node, Go, Angular/React and AI-assisted development.",
+    "viewProjects": "View projects",
+    "contactMe": "Contact me",
+    "years": "Years shipping",
+    "featured": "Featured projects",
+    "technologies": "Technologies",
+    "scroll": "Scroll"
+  },
+  "Marquee": {
+    "tech": [
+      "Full Stack",
+      "ServiceNow",
+      ".NET",
+      "Next.js",
+      "Go",
+      "Angular",
+      "Clean Architecture",
+      "AI-assisted"
+    ],
+    "motto": [
+      "Ship fast",
+      "Scale clean",
+      "Automate everything",
+      "Enterprise grade",
+      "Pixel loud"
+    ]
+  },
+  "Services": {
+    "chip": "01 — Services",
+    "title1": "What",
+    "title2": "I",
+    "title3": "do",
+    "intro": "From pixel-perfect interfaces to enterprise integrations — I design, build and ship the full stack.",
+    "items": {
+      "frontend": {
+        "title": "Frontend Development",
+        "body": "Building modern web applications with Angular, React and Next.js, focusing on performance and user experience."
+      },
+      "backend": {
+        "title": "Backend Development",
+        "body": "Robust server-side solutions with .NET, Node, Go and Laravel — scalable, maintainable, Clean Architecture first."
+      },
+      "servicenow": {
+        "title": "ServiceNow & Automation",
+        "body": "Custom scoped apps, Glide scripting and Flow Designer / Integration Hub flows that automate complex enterprise workflows."
+      },
+      "integration": {
+        "title": "Full Stack Integration",
+        "body": "Connecting frontends, APIs and ERPs like SAP Business One into cohesive, efficient products with solid CI/CD."
+      }
+    }
+  },
+  "Tech": {
+    "heading": "Tech stack",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Data",
+      "platform": "Platform & Tools"
+    }
+  },
+  "Experience": {
+    "chip": "03 — Experience",
+    "title1": "Where",
+    "title2": "I've been",
+    "hint": "Scroll to travel",
+    "present": "Present",
+    "work": "Work",
+    "education": "Education",
+    "next": "Next?",
+    "talk": "Let's talk",
+    "entries": {
+      "altiatek": {
+        "role": "Software Engineer & ServiceNow Technical Consultant",
+        "description": "Engineering custom ServiceNow solutions with Glide Scripting (Business Rules, Script Includes) and Flow Designer / Integration Hub to automate complex workflows. Configuring Custom Scoped Applications and Platform Analytics dashboards. Node/TypeScript + Jest for API integrations."
+      },
+      "platino": {
+        "role": "Software Developer",
+        "description": "Built enterprise CRM platforms with C# .NET (Clean Architecture) and Angular within an Agile team, integrating via SAP B1 Service Layer. Optimized CI/CD pipelines and delivered work in Jira sprints."
+      },
+      "bytes": {
+        "role": "Freelance Full Stack Software Engineer",
+        "description": "Developed custom business applications and client websites using a broad full-stack toolset: Node, Go, .NET, Java, Python, PHP/Laravel, Bootstrap, and Tailwind CSS."
+      },
+      "uth": {
+        "role": "Software Engineering",
+        "organization": "Universidad Tecnológica de Honduras (UTH)",
+        "description": "Bachelor's degree in Software Engineering, in progress. Parallel to professional experience in enterprise software development.",
+        "tags": ["Software Engineering", "In Progress"]
+      }
+    }
+  },
+  "Projects": {
+    "chip": "04 — Projects",
+    "title1": "Selected",
+    "title2": "Work",
+    "intro": "Enterprise platforms, CRMs and open-source experiments — built end to end.",
+    "filterLabel": "Filter:",
+    "filterGroup": "Filter projects",
+    "previous": "Previous projects",
+    "next": "Next projects",
+    "filters": {
+      "all": "All",
+      "ai": "AI",
+      "fullstack": "Full Stack",
+      "backend": "Backend",
+      "frontend": "Frontend"
+    },
+    "code": "Code",
+    "live": "Live",
+    "items": {
+      "cripco": {
+        "title": "Cripco - Rehabilitation Portal",
+        "description": "Rehabilitation center platform with patient records, appointments, therapists and treatment plans, plus a public website and WhatsApp notifications"
+      },
+      "mcp": {
+        "title": "ServiceNow MCP Server",
+        "description": "MCP server that lets AI agents work with ServiceNow safely: Table, Aggregate and schema APIs exposed as tools, behind an update-set write gate and risk prechecks"
+      },
+      "bytes": {
+        "title": "Bytes - Company Website",
+        "description": "Company website for Bytes, presenting its software development services for businesses"
+      },
+      "pcs": {
+        "title": "PCS - Construction Software",
+        "description": "Cost and project management platform for construction companies, covering budget tracking, resource allocation, and progress reporting in real time"
+      },
+      "platino": {
+        "title": "Platino CRM",
+        "description": "CRM for the distribution of trucks, heavy machinery, and spare parts, integrated with SAP Business One for sales tracking, inventory, and customer management"
+      },
+      "pixel": {
+        "title": "Pixel Todo",
+        "description": "To-do list app built as a coding challenge using Laravel as the backend framework and Bootstrap 5 as the frontend interface"
+      },
+      "clean": {
+        "title": "Clean Architecture Template",
+        "description": "C# .NET solution template structured across four layers — Api, Application, Domain, and Infrastructure — following Clean Architecture and CQRS patterns"
+      },
+      "articles": {
+        "title": "ArticlesAPI",
+        "description": "REST API built with .NET that automatically creates the database via migrations on first run, with endpoints structured around Clean Architecture principles"
+      },
+      "aiskills": {
+        "title": "AI-Skills",
+        "description": "A collection of Python scripts and experiments exploring AI tooling and automation workflows"
+      }
+    }
+  },
+  "Featured": {
+    "overview": "Overview",
+    "preview": "Preview"
+  },
+  "Cripco": {
+    "sticker": "New",
+    "featured": "Featured",
+    "tag": "Full Stack · HealthTech",
+    "subtitle": "Rehabilitation center portal",
+    "description": "A complete digital platform for a rehabilitation center: patient records, appointment scheduling, therapists and treatment plans in one dashboard — plus a public website and WhatsApp notifications that keep patients in the loop.",
+    "features": [
+      "Patients & clinical records",
+      "Appointments with therapist delegation",
+      "Treatment plans with sub-activities",
+      "Automated daily & monthly reports",
+      "Public site: news, events, services",
+      "WhatsApp reminders & notifications"
+    ],
+    "visit": "Visit cripco-hn.org"
+  },
+  "Mcp": {
+    "sticker": "Open source",
+    "featured": "Featured · AI",
+    "tag": "AI · MCP · ServiceNow",
+    "subtitle": "MCP server for ServiceNow",
+    "description": "A standalone Model Context Protocol server that lets AI agents like Claude, Copilot or opencode query and change a ServiceNow instance safely — every write is gated behind a real update set, an explicit opt-in and docs-backed risk checks.",
+    "features": [
+      "Table, Aggregate & schema APIs as MCP tools",
+      "Write gate: no changes while the update set is \"Default\"",
+      "Write tools are only registered when explicitly enabled",
+      "Risk precheck with short-lived signed tokens",
+      "Built-in ServiceNow docs search & best practices",
+      "Works with Claude Code, Claude Desktop, Copilot and any MCP client"
+    ],
+    "github": "View on GitHub",
+    "terminal": {
+      "prompt": "Add a \"Risk score\" field to change_request",
+      "risk": "Risk: medium · signed precheck token issued",
+      "refused": "Refused: your current update set is \"Default\"",
+      "created": "u_risk_score created in update set \"CHG risk score\""
+    }
+  },
+  "Contact": {
+    "chip": "05 — Contact",
+    "lines": ["Let's", "Build", "Something", "Loud."],
+    "intro": "Have a project, a role or a wild idea? My inbox is open — I usually reply within a day."
+  },
+  "Footer": {
+    "tagline": "Full Stack Developer building enterprise-grade web applications with modern technologies.",
+    "navigate": "Navigate",
+    "connect": "Connect",
+    "rights": "All rights reserved.",
+    "top": "Top"
+  },
+  "About": {
+    "chip": "About",
+    "hi": "Hi, I'm",
+    "body": "Software engineer with 4+ years delivering enterprise platform architecture. I work across ServiceNow, C# .NET, Node, Go and Angular/React — from Clean Architecture backends and ERP integrations to interfaces people actually enjoy using. Currently a Software Engineer & ServiceNow Technical Consultant at Altiatek and finishing my Software Engineering degree at UTH.",
+    "basedIn": "Based in",
+    "experience": "Experience",
+    "experienceValue": "4+ years",
+    "focus": "Focus",
+    "back": "← Back home"
+  }
 }

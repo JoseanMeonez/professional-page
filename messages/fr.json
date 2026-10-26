@@ -1,19 +1,244 @@
 {
-  "About": "À propos",
-  "Support": "Support",
-  "Other": "Autre",
-  "Theme": "Thème",
-  "An": "Un",
-  "Booster": "Booster",
-  "to_Your_NextJS_Apps": "pour vos applications NextJS",
-  "An_approachable_performant_and_versatile_boilerplate_for_building_SSR_applications": "Un modèle facile d'accès, performant et polyvalent pour construire des applications SSR.",
-  "Use_Template": "Utiliser le modèle",
-  "Learn_More": "En savoir plus !",
-  "Approachable": "Accessible",
-  "Add_components_without_sending_additional_client_side_JavaScript_Built_on_the_latest_React_features": "Ajoutez des composants sans envoyer de JavaScript supplémentaire côté client. Basé sur les dernières fonctionnalités de React.",
-  "Automatic_Image_Font_and_Script_Optimizations_for_improved_UX_and_Core_Web_Vitals": "Optimisations automatiques des images, des polices et des scripts pour améliorer l'UX et les Core Web Vitals.",
-  "Versatile": "Polyvalent",
-  "A_rich_incredibly_adoptable_template_that_scales_between_a_small_showcase_website_and_a_full_size_app": "Un modèle incroyablement riche et adaptable qui s'étend d'un petit site vitrine à une application de pleine taille.",
-  "This_is_a_simple_about_page_just_to_show_how_you_can_use_the_internationalization_in_different_pages": "Ceci est une simple page à propos, juste pour montrer comment vous pouvez utiliser l'internationalisation sur différentes pages",
-  "Performant": "Performant"
+  "Meta": {
+    "title": "Andrés Meoñez | Développeur Full Stack",
+    "description": "Plus de 4 ans à livrer des logiciels d'entreprise. Spécialisé en ServiceNow, .NET, Node.js, Go, Angular, React et développement assisté par l'IA."
+  },
+  "Nav": {
+    "services": "Services",
+    "stack": "Stack",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact",
+    "about": "À propos",
+    "home": "Accueil",
+    "main": "Principal",
+    "mobile": "Mobile",
+    "toggleMenu": "Ouvrir ou fermer le menu",
+    "lightMode": "Passer en mode clair",
+    "darkMode": "Passer en mode sombre",
+    "language": "Changer de langue"
+  },
+  "Hero": {
+    "available": "Disponible pour travailler",
+    "location": "Honduras · À distance",
+    "roles": [
+      "Ingénieur logiciel",
+      "Consultant ServiceNow",
+      "Développeur Full Stack",
+      "Architecte Backend"
+    ],
+    "sticker": "Dev<br></br>Full<br></br>Stack",
+    "bio": "Plus de 4 ans à concevoir l'architecture de plateformes d'entreprise. Compétences en <sn>ServiceNow</sn>, <net>.NET</net>, Node, Go, Angular/React et développement assisté par l'IA.",
+    "viewProjects": "Voir les projets",
+    "contactMe": "Me contacter",
+    "years": "Années d'expérience",
+    "featured": "Projets phares",
+    "technologies": "Technologies",
+    "scroll": "Défiler"
+  },
+  "Marquee": {
+    "tech": [
+      "Full Stack",
+      "ServiceNow",
+      ".NET",
+      "Next.js",
+      "Go",
+      "Angular",
+      "Clean Architecture",
+      "Assisté par l'IA"
+    ],
+    "motto": [
+      "Livrer vite",
+      "Évoluer proprement",
+      "Tout automatiser",
+      "Niveau entreprise",
+      "Pixels bruyants"
+    ]
+  },
+  "Services": {
+    "chip": "01 — Services",
+    "title1": "Ce que",
+    "title2": "je",
+    "title3": "fais",
+    "intro": "Des interfaces au pixel près aux intégrations d'entreprise — je conçois, développe et livre toute la stack.",
+    "items": {
+      "frontend": {
+        "title": "Développement Frontend",
+        "body": "Applications web modernes avec Angular, React et Next.js, axées sur la performance et l'expérience utilisateur."
+      },
+      "backend": {
+        "title": "Développement Backend",
+        "body": "Solutions côté serveur robustes avec .NET, Node, Go et Laravel — évolutives, maintenables, Clean Architecture avant tout."
+      },
+      "servicenow": {
+        "title": "ServiceNow et automatisation",
+        "body": "Applications à portée personnalisée, scripts Glide et flux Flow Designer / Integration Hub qui automatisent des processus d'entreprise complexes."
+      },
+      "integration": {
+        "title": "Intégration Full Stack",
+        "body": "Je relie frontends, API et ERP comme SAP Business One en produits cohérents et efficaces, avec un CI/CD solide."
+      }
+    }
+  },
+  "Tech": {
+    "heading": "Tech stack",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Données",
+      "platform": "Plateformes et outils"
+    }
+  },
+  "Experience": {
+    "chip": "03 — Expérience",
+    "title1": "Mon",
+    "title2": "parcours",
+    "hint": "Défilez pour parcourir",
+    "present": "Présent",
+    "work": "Travail",
+    "education": "Formation",
+    "next": "La suite ?",
+    "talk": "Parlons-en",
+    "entries": {
+      "altiatek": {
+        "role": "Ingénieur logiciel et consultant technique ServiceNow",
+        "description": "Conception de solutions ServiceNow sur mesure avec Glide Scripting (Business Rules, Script Includes) et Flow Designer / Integration Hub pour automatiser des flux de travail complexes. Configuration d'applications à portée personnalisée et de tableaux de bord Platform Analytics. Node/TypeScript + Jest pour les intégrations d'API."
+      },
+      "platino": {
+        "role": "Développeur logiciel",
+        "description": "Développement de plateformes CRM d'entreprise en C# .NET (Clean Architecture) et Angular au sein d'une équipe Agile, intégrées via SAP B1 Service Layer. Optimisation des pipelines CI/CD et livraison en sprints Jira."
+      },
+      "bytes": {
+        "role": "Ingénieur logiciel Full Stack freelance",
+        "description": "Développement d'applications métier sur mesure et de sites web pour des clients avec une large palette d'outils full stack : Node, Go, .NET, Java, Python, PHP/Laravel, Bootstrap et Tailwind CSS."
+      },
+      "uth": {
+        "role": "Génie logiciel",
+        "organization": "Universidad Tecnológica de Honduras (UTH)",
+        "description": "Licence en génie logiciel, en cours. Menée en parallèle d'une expérience professionnelle en développement de logiciels d'entreprise.",
+        "tags": ["Génie logiciel", "En cours"]
+      }
+    }
+  },
+  "Projects": {
+    "chip": "04 — Projets",
+    "title1": "Travaux",
+    "title2": "Choisis",
+    "intro": "Plateformes d'entreprise, CRM et expériences open source — construits de bout en bout.",
+    "filterLabel": "Filtrer :",
+    "filterGroup": "Filtrer les projets",
+    "previous": "Projets précédents",
+    "next": "Projets suivants",
+    "filters": {
+      "all": "Tous",
+      "ai": "IA",
+      "fullstack": "Full Stack",
+      "backend": "Backend",
+      "frontend": "Frontend"
+    },
+    "code": "Code",
+    "live": "En ligne",
+    "items": {
+      "cripco": {
+        "title": "Cripco - Portail de rééducation",
+        "description": "Plateforme pour un centre de rééducation avec dossiers patients, rendez-vous, thérapeutes et plans de traitement, ainsi qu'un site public et des notifications WhatsApp"
+      },
+      "mcp": {
+        "title": "Serveur MCP ServiceNow",
+        "description": "Serveur MCP qui permet aux agents IA de travailler avec ServiceNow en toute sécurité : les API Table, Aggregate et de schéma exposées comme outils, derrière un contrôle d'écriture par update set et des pré-vérifications de risque"
+      },
+      "bytes": {
+        "title": "Bytes - Site d'entreprise",
+        "description": "Site d'entreprise de Bytes présentant ses services de développement logiciel pour les entreprises"
+      },
+      "pcs": {
+        "title": "PCS - Logiciel de construction",
+        "description": "Plateforme de gestion des coûts et des projets pour les entreprises de construction : suivi budgétaire, allocation des ressources et rapports d'avancement en temps réel"
+      },
+      "platino": {
+        "title": "Platino CRM",
+        "description": "CRM pour la distribution de camions, d'engins lourds et de pièces détachées, intégré à SAP Business One pour le suivi des ventes, des stocks et de la clientèle"
+      },
+      "pixel": {
+        "title": "Pixel Todo",
+        "description": "Application de liste de tâches réalisée comme défi de programmation, avec Laravel côté backend et Bootstrap 5 pour l'interface"
+      },
+      "clean": {
+        "title": "Modèle Clean Architecture",
+        "description": "Modèle de solution C# .NET structuré en quatre couches — Api, Application, Domain et Infrastructure — selon les principes Clean Architecture et CQRS"
+      },
+      "articles": {
+        "title": "ArticlesAPI",
+        "description": "API REST en .NET qui crée automatiquement la base de données via des migrations au premier lancement, avec des endpoints structurés selon les principes de la Clean Architecture"
+      },
+      "aiskills": {
+        "title": "AI-Skills",
+        "description": "Une collection de scripts et d'expériences en Python autour des outils d'IA et des flux d'automatisation"
+      }
+    }
+  },
+  "Featured": {
+    "overview": "Présentation",
+    "preview": "Aperçu"
+  },
+  "Cripco": {
+    "sticker": "Nouveau",
+    "featured": "À la une",
+    "tag": "Full Stack · HealthTech",
+    "subtitle": "Portail de centre de rééducation",
+    "description": "Une plateforme numérique complète pour un centre de rééducation : dossiers patients, prise de rendez-vous, thérapeutes et plans de traitement dans un seul tableau de bord — plus un site public et des notifications WhatsApp qui tiennent les patients informés.",
+    "features": [
+      "Patients et dossiers cliniques",
+      "Rendez-vous avec délégation entre thérapeutes",
+      "Plans de traitement avec sous-activités",
+      "Rapports quotidiens et mensuels automatisés",
+      "Site public : actualités, événements, services",
+      "Rappels et notifications WhatsApp"
+    ],
+    "visit": "Visiter cripco-hn.org"
+  },
+  "Mcp": {
+    "sticker": "Open source",
+    "featured": "À la une · IA",
+    "tag": "IA · MCP · ServiceNow",
+    "subtitle": "Serveur MCP pour ServiceNow",
+    "description": "Un serveur Model Context Protocol autonome qui permet aux agents IA comme Claude, Copilot ou opencode d'interroger et de modifier une instance ServiceNow en toute sécurité — chaque écriture passe par un vrai update set, une activation explicite et des contrôles de risque fondés sur la documentation.",
+    "features": [
+      "API Table, Aggregate et de schéma comme outils MCP",
+      "Contrôle d'écriture : aucun changement tant que l'update set est « Default »",
+      "Les outils d'écriture ne sont enregistrés que s'ils sont explicitement activés",
+      "Pré-vérification des risques avec des jetons signés à courte durée",
+      "Recherche dans la documentation ServiceNow et bonnes pratiques intégrées",
+      "Compatible avec Claude Code, Claude Desktop, Copilot et tout client MCP"
+    ],
+    "github": "Voir sur GitHub",
+    "terminal": {
+      "prompt": "Ajoute un champ « Risk score » à change_request",
+      "risk": "Risque : moyen · jeton de pré-vérification signé émis",
+      "refused": "Refusé : votre update set actuel est « Default »",
+      "created": "u_risk_score créé dans l'update set « CHG risk score »"
+    }
+  },
+  "Contact": {
+    "chip": "05 — Contact",
+    "lines": ["Construisons", "Quelque", "Chose de", "Bruyant."],
+    "intro": "Un projet, un poste ou une idée folle ? Ma boîte de réception est ouverte — je réponds généralement en moins d'une journée."
+  },
+  "Footer": {
+    "tagline": "Développeur Full Stack qui crée des applications web de niveau entreprise avec des technologies modernes.",
+    "navigate": "Navigation",
+    "connect": "Contact",
+    "rights": "Tous droits réservés.",
+    "top": "Haut"
+  },
+  "About": {
+    "chip": "À propos",
+    "hi": "Bonjour, je suis",
+    "body": "Ingénieur logiciel avec plus de 4 ans d'expérience dans l'architecture de plateformes d'entreprise. Je travaille avec ServiceNow, C# .NET, Node, Go et Angular/React — des backends Clean Architecture et intégrations ERP aux interfaces que les gens aiment vraiment utiliser. Actuellement ingénieur logiciel et consultant technique ServiceNow chez Altiatek, je termine mes études de génie logiciel à l'UTH.",
+    "basedIn": "Basé au",
+    "experience": "Expérience",
+    "experienceValue": "4+ ans",
+    "focus": "Spécialités",
+    "back": "← Retour à l'accueil"
+  }
 }

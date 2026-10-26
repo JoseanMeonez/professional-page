@@ -12,43 +12,55 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1.25rem',
       screens: {
-        '2xl': '1440px'
+        '2xl': '1400px'
       }
     },
     extend: {
-      backgroundImage: {
-        'span-bg': 'var(--span-bg)'
+      // Height breakpoints: every section is sized to fit one screen, so short
+      // laptop and phone screens need their own tightening.
+      screens: {
+        short: { raw: '(max-height: 820px)' },
+        tiny: { raw: '(max-height: 700px)' }
       },
       colors: {
-        background: 'var(--background)',
-        primary: {
-          DEFAULT: 'var(--primary)'
-        },
-        'button-secondary': 'var(--button-secondary)',
-        'button-text': 'var(--button-text)',
-        'text-secondary': 'var(--text-secondary)',
-        'background-secondary': 'var(--background-secondary)',
-        secondary: 'var(--secondary)',
-        button: 'var(--button)',
-        selected: 'var(--selected)',
-        dropdown: 'var(--dropdown)',
-        dropdownHover: 'var(--dropdown-hover)',
-        buttonSecondary: 'var(--button-secondary)',
-        accent: 'var(--accent)',
-        surface: 'var(--surface)',
-        'border-theme': 'var(--border)'
+        bg: 'var(--bg)',
+        'bg-alt': 'var(--bg-alt)',
+        paper: 'var(--paper)',
+        ink: 'var(--ink)',
+        muted: 'var(--muted)',
+        line: 'var(--line)',
+        'on-accent': 'var(--on-accent)',
+        nb: {
+          yellow: 'var(--yellow)',
+          pink: 'var(--pink)',
+          blue: 'var(--blue)',
+          lime: 'var(--lime)',
+          orange: 'var(--orange)',
+          violet: 'var(--violet)',
+          cyan: 'var(--cyan)',
+          red: 'var(--red)'
+        }
       },
-
+      boxShadow: {
+        'nb-sm': '3px 3px 0 0 var(--line)',
+        nb: '6px 6px 0 0 var(--line)',
+        'nb-lg': '10px 10px 0 0 var(--line)',
+        'nb-xl': '14px 14px 0 0 var(--line)'
+      },
+      borderWidth: {
+        3: '3px'
+      },
       fontFamily: {
-        sans: ['var(--font-syne)', 'var(--rubik)'],
-        display: ['var(--font-syne)', 'sans-serif'],
-        mono: ['var(--font-jetbrains-mono)', 'monospace']
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        sans: [
+          "'Google Sans'",
+          'var(--font-space-grotesk)',
+          'var(--rubik)',
+          'sans-serif'
+        ],
+        display: ['var(--font-archivo-black)', 'var(--font-space-grotesk)', 'sans-serif'],
+        mono: ["'Google Sans Code'", 'var(--font-jetbrains-mono)', 'monospace']
       }
     }
   },
