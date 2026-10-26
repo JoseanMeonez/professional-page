@@ -21,16 +21,25 @@ const PROJECTS: {
   technologies: string[]
   demo?: string
   github?: string
-  category: Category
+  categories: Category[]
   color: string
 }[] = [
+  {
+    title: 'Cripco - Rehabilitation Portal',
+    description:
+      'Rehabilitation center platform with patient records, appointments, therapists and treatment plans, plus a public website and WhatsApp notifications',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Prisma', 'PostgreSQL'],
+    demo: 'https://cripco-hn.org',
+    categories: ['fullstack', 'frontend'],
+    color: 'bg-nb-lime'
+  },
   {
     title: 'PCS - Construction Software',
     description:
       'Cost and project management platform for construction companies, covering budget tracking, resource allocation, and progress reporting in real time',
     technologies: ['Next.js', 'C#', '.NET', 'SQL Server', 'TypeScript'],
     demo: 'https://costos.wym.hn',
-    category: 'fullstack',
+    categories: ['fullstack'],
     color: 'bg-nb-yellow'
   },
   {
@@ -46,7 +55,7 @@ const PROJECTS: {
       'SAP Service Layer'
     ],
     demo: 'https://crmrepuestos.platino.hn/',
-    category: 'fullstack',
+    categories: ['fullstack'],
     color: 'bg-nb-cyan'
   },
   {
@@ -56,7 +65,7 @@ const PROJECTS: {
     technologies: ['Laravel', 'PHP', 'MySQL', 'Bootstrap 5'],
     demo: 'https://pixel-todo.laravel.cloud/',
     github: 'https://github.com/JoseanMeonez/Todo-list',
-    category: 'fullstack',
+    categories: ['fullstack'],
     color: 'bg-nb-pink'
   },
   {
@@ -65,7 +74,7 @@ const PROJECTS: {
       'C# .NET solution template structured across four layers — Api, Application, Domain, and Infrastructure — following Clean Architecture and CQRS patterns',
     technologies: ['C#', '.NET', 'Clean Architecture', 'CQRS'],
     github: 'https://github.com/JoseanMeonez/Clean-Architecture',
-    category: 'backend',
+    categories: ['backend'],
     color: 'bg-nb-violet'
   },
   {
@@ -74,7 +83,7 @@ const PROJECTS: {
       'REST API built with .NET that automatically creates the database via migrations on first run, with endpoints structured around Clean Architecture principles',
     technologies: ['C#', '.NET', 'Entity Framework', 'Clean Architecture'],
     github: 'https://github.com/JoseanMeonez/ArticlesAPI',
-    category: 'backend',
+    categories: ['backend'],
     color: 'bg-nb-orange'
   },
   {
@@ -83,8 +92,8 @@ const PROJECTS: {
       'A collection of Python scripts and experiments exploring AI tooling and automation workflows',
     technologies: ['Python', 'AI/ML'],
     github: 'https://github.com/JoseanMeonez/AI-Skills',
-    category: 'backend',
-    color: 'bg-nb-lime'
+    categories: ['backend'],
+    color: 'bg-nb-red'
   }
 ]
 
@@ -210,7 +219,8 @@ export default function Projects() {
 
         <div className='projects-grid grid grid-cols-1 gap-8 [perspective:1400px] md:grid-cols-2 lg:grid-cols-3'>
           {PROJECTS.map((project, i) => {
-            const visible = filter === 'all' || project.category === filter
+            const visible =
+              filter === 'all' || project.categories.includes(filter)
             return (
               <article
                 key={project.title}
@@ -220,7 +230,7 @@ export default function Projects() {
                   className={`flex items-center justify-between border-b-3 border-line ${project.color} px-5 py-3 text-on-accent`}
                 >
                   <span className='font-mono text-xs font-bold uppercase'>
-                    {CATEGORY_LABEL[project.category]}
+                    {project.categories.map(c => CATEGORY_LABEL[c]).join(' · ')}
                   </span>
                   <span className='font-display text-2xl'>
                     {String(i + 1).padStart(2, '0')}

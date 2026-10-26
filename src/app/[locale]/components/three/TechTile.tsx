@@ -11,14 +11,21 @@ type Props = {
   icon: TechIcon
   /** Receives the inner group that should be rotated; the hard shadow stays put behind it. */
   spinRef?: Ref<THREE.Group>
+  shadow?: TileShadow
 } & JSX.IntrinsicElements['group']
+
+export type TileShadow = { color: string; opacity: number }
+
+/** Solid ink reads as a black hole behind text in light mode, so tone it per theme. */
+export const tileShadowFor = (dark: boolean): TileShadow =>
+  dark ? { color: '#f5f0e1', opacity: 0.14 } : { color: INK, opacity: 0.2 }
 
 /**
  * A neo-brutalist tile: flat color, thick ink outline and an extruded logo on
  * both faces, floating over a flat ink slab that acts as its hard offset shadow.
  */
 const TechTile = forwardRef<THREE.Group, Props>(function TechTile(
-  { icon, spinRef, ...props },
+  { icon, spinRef, shadow = { color: INK, opacity: 1 }, ...props },
   ref
 ) {
   const geometry = useMemo(() => getIconGeometry(icon), [icon])
@@ -31,7 +38,12 @@ const TechTile = forwardRef<THREE.Group, Props>(function TechTile(
         smoothness={2}
         position={[0.14, -0.14, -0.5]}
       >
-        <meshBasicMaterial color={INK} />
+        <meshBasicMaterial
+          color={shadow.color}
+          transparent={shadow.opacity < 1}
+          opacity={shadow.opacity}
+          depthWrite={shadow.opacity >= 1}
+        />
       </RoundedBox>
       <group ref={spinRef}>
         <RoundedBox args={[1.2, 1.2, 0.26]} radius={0.08} smoothness={3}>

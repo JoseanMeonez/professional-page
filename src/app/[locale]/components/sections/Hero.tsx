@@ -21,10 +21,16 @@ const STATS = [
   { value: '27', label: 'Technologies', color: 'bg-nb-cyan' }
 ]
 
-function SplitWord({ text, className }: { text: string; className?: string }) {
+function SplitWord({
+  text,
+  className = '-mt-[0.22em] pb-[0.08em] pt-[0.22em]'
+}: {
+  text: string
+  className?: string
+}) {
   return (
     <span
-      className={`-mt-[0.22em] inline-block overflow-hidden pb-[0.08em] pt-[0.22em] align-bottom ${className ?? ''}`}
+      className={`inline-block overflow-hidden align-bottom ${className}`}
       aria-hidden
     >
       {Array.from(text).map((ch, i) => (
@@ -155,10 +161,11 @@ export default function Hero() {
               <SplitWord text='Andrés' />
             </span>
             <span className='hero-line-2 relative block text-[clamp(3.6rem,13vw,10.5rem)]'>
-              <span className='relative isolate inline-block'>
-                <span className='nb-border absolute inset-x-[-0.08em] bottom-[0.1em] top-[0.18em] -z-10 -rotate-1 rounded-md bg-nb-yellow' />
-                <SplitWord text='Meoñez' className='px-1 text-on-accent' />
-              </span>
+              {/* The yellow box is the word's own clip container, so it always sits right under the letters. */}
+              <SplitWord
+                text='Meoñez'
+                className='nb-border mt-[0.06em] -rotate-1 rounded-lg bg-nb-yellow px-[0.1em] pb-[0.04em] pt-[0.16em] text-[#0a0a0a] shadow-nb'
+              />
               <span className='hero-sticker nb-border absolute -top-6 right-0 hidden size-28 rotate-12 place-items-center rounded-full bg-nb-pink text-center font-mono text-[11px] font-bold uppercase leading-tight text-on-accent shadow-nb sm:grid md:-right-10'>
                 <span className='animate-nb-spin absolute inset-1 rounded-full border-2 border-dashed border-[#0a0a0a]' />
                 Full

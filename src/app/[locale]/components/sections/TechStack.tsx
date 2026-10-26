@@ -122,10 +122,10 @@ export default function TechStack() {
         </div>
 
         <div className='pointer-events-none absolute inset-x-0 top-24 z-10 flex flex-col items-center font-display uppercase leading-[0.85]'>
-          <span className='tech-heading-a whitespace-nowrap text-[clamp(3rem,11vw,9rem)]'>
+          <span className='tech-heading-a whitespace-nowrap text-[clamp(3rem,11vw,9rem)] [-webkit-text-stroke:0.12em_var(--bg)] [paint-order:stroke_fill]'>
             Tech stack
           </span>
-          <span className='tech-heading-b nb-outline-text whitespace-nowrap text-[clamp(3rem,11vw,9rem)]'>
+          <span className='tech-heading-b whitespace-nowrap text-[clamp(3rem,11vw,9rem)] text-bg [-webkit-text-stroke:3px_var(--ink)]'>
             Tech stack
           </span>
         </div>

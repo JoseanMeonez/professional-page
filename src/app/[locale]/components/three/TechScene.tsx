@@ -3,7 +3,8 @@ import { TECH_ICONS } from '@/src/data/techIcons'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { MutableRefObject, useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import TechTile from './TechTile'
+import { useTheme } from 'next-themes'
+import TechTile, { TileShadow, tileShadowFor } from './TechTile'
 
 const ROWS = 6
 const PER_ROW = 11
@@ -17,10 +18,12 @@ const ROW_GAP = 1.75
  */
 function Wall({
   progress,
-  reduced
+  reduced,
+  shadow
 }: {
   progress: MutableRefObject<number>
   reduced: boolean
+  shadow: TileShadow
 }) {
   const group = useRef<THREE.Group>(null)
   const tiles = useRef<(THREE.Group | null)[]>([])
@@ -88,6 +91,7 @@ function Wall({
           <TechTile
             key={`${r}-${i}`}
             icon={icon}
+            shadow={shadow}
             position={[0, ((ROWS - 1) / 2 - r) * ROW_GAP, 0]}
             ref={el => {
               tiles.current[r * PER_ROW + i] = el
@@ -109,6 +113,7 @@ export default function TechScene({
   progress: MutableRefObject<number>
   active: boolean
 }) {
+  const { resolvedTheme } = useTheme()
   const reduced = useMemo(
     () =>
       typeof window !== 'undefined' &&
@@ -125,7 +130,11 @@ export default function TechScene({
     >
       <ambientLight intensity={1.6} />
       <directionalLight position={[4, 6, 8]} intensity={2.2} />
-      <Wall progress={progress} reduced={reduced} />
+      <Wall
+        progress={progress}
+        reduced={reduced}
+        shadow={tileShadowFor(resolvedTheme === 'dark')}
+      />
     </Canvas>
   )
 }

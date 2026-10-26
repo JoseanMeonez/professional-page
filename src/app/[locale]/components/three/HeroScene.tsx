@@ -4,7 +4,8 @@ import { Outlines, RoundedBox } from '@react-three/drei'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { MutableRefObject, ReactNode, useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import TechTile, { INK } from './TechTile'
+import { useTheme } from 'next-themes'
+import TechTile, { INK, TileShadow, tileShadowFor } from './TechTile'
 
 const iconByName = (name: string) => TECH_ICONS.find(i => i.name === name)!
 
@@ -18,7 +19,10 @@ type Item = {
   // Tiles only wobble: a full turn would swing their shadow slab in front.
   wobble?: boolean
   delay: number
-  node: ReactNode
+  // Phones: a slot peeking in from the screen edge, away from the text. No slot = hidden.
+  m?: [number, number]
+  node?: ReactNode
+  tile?: string
 }
 
 function Shape({ children, color }: { children: ReactNode; color: string }) {
@@ -39,6 +43,7 @@ const ITEMS: Item[] = [
     scale: 1.1,
     spin: [0.3, 0.5],
     delay: 0.1,
+    m: [0.95, 0.74],
     node: (
       <Shape color='#4d7cfe'>
         <torusGeometry args={[0.6, 0.24, 24, 64]} />
@@ -52,6 +57,7 @@ const ITEMS: Item[] = [
     scale: 1,
     spin: [0.4, 0.2],
     delay: 0.2,
+    m: [-1, 0.3],
     node: (
       <RoundedBox args={[1, 1, 1]} radius={0.06}>
         <meshToonMaterial color='#ff5da2' />
@@ -66,6 +72,7 @@ const ITEMS: Item[] = [
     scale: 0.9,
     spin: [0.2, 0.6],
     delay: 0.3,
+    m: [1, -0.22],
     node: (
       <Shape color='#b8ff3b'>
         <coneGeometry args={[0.65, 1.1, 4]} />
@@ -79,6 +86,7 @@ const ITEMS: Item[] = [
     scale: 1,
     spin: [0.1, 0.3],
     delay: 0.35,
+    m: [-0.95, -0.72],
     node: (
       <Shape color='#ff7a1a'>
         <sphereGeometry args={[0.55, 32, 32]} />
@@ -92,6 +100,7 @@ const ITEMS: Item[] = [
     scale: 0.8,
     spin: [0.5, 0.4],
     delay: 0.45,
+    m: [0.92, -0.9],
     node: (
       <Shape color='#a78bfa'>
         <icosahedronGeometry args={[0.65, 0]} />
@@ -106,7 +115,7 @@ const ITEMS: Item[] = [
     spin: [0.15, 0.45],
     delay: 0.5,
     wobble: true,
-    node: <TechTile icon={iconByName('React')} />
+    tile: 'React'
   },
   {
     fx: 0.4,
@@ -116,7 +125,7 @@ const ITEMS: Item[] = [
     spin: [0.2, 0.35],
     delay: 0.6,
     wobble: true,
-    node: <TechTile icon={iconByName('ServiceNow')} />
+    tile: 'ServiceNow'
   },
   {
     fx: 0.96,
@@ -126,7 +135,7 @@ const ITEMS: Item[] = [
     spin: [0.25, 0.3],
     delay: 0.7,
     wobble: true,
-    node: <TechTile icon={iconByName('.NET')} />
+    tile: '.NET'
   },
   {
     fx: 0.18,
@@ -136,7 +145,7 @@ const ITEMS: Item[] = [
     spin: [0.3, 0.25],
     delay: 0.8,
     wobble: true,
-    node: <TechTile icon={iconByName('TypeScript')} />
+    tile: 'TypeScript'
   },
   {
     fx: 0.62,
@@ -146,7 +155,7 @@ const ITEMS: Item[] = [
     spin: [0.2, 0.5],
     delay: 0.9,
     wobble: true,
-    node: <TechTile icon={iconByName('Go')} />
+    tile: 'Go'
   }
 ]
 
@@ -159,11 +168,13 @@ const easeOutBack = (x: number) => {
 function Swarm({
   progress,
   pointer,
-  reduced
+  reduced,
+  shadow
 }: {
   progress: MutableRefObject<number>
   pointer: MutableRefObject<{ x: number; y: number }>
   reduced: boolean
+  shadow: TileShadow
 }) {
   const group = useRef<THREE.Group>(null)
   const refs = useRef<(THREE.Group | null)[]>([])
@@ -196,9 +207,13 @@ function Swarm({
       const intro = reduced
         ? 1
         : easeOutBack(THREE.MathUtils.clamp((t - it.delay) / 0.9, 0, 1))
-      const baseX = compact ? (it.fx * 2 - 1) * halfW * 0.85 : it.fx * halfW
-      const baseY = it.fy * halfH * (compact ? 0.85 : 0.75)
-      const baseZ = it.z - (compact ? 3 : 0)
+      if (compact && !it.m) {
+        obj.scale.setScalar(0.0001)
+        return
+      }
+      const baseX = compact ? it.m![0] * halfW : it.fx * halfW
+      const baseY = compact ? it.m![1] * halfH : it.fy * halfH * 0.75
+      const baseZ = compact ? -1 : it.z
       const bob = Math.sin(t * 0.9 + i * 1.7) * 0.18
 
       obj.position.set(
@@ -216,7 +231,7 @@ function Swarm({
         0
       )
       obj.scale.setScalar(
-        Math.max(0.0001, it.scale * intro * (compact ? 0.6 : 1))
+        Math.max(0.0001, it.scale * intro * (compact ? 0.75 : 1))
       )
     })
 
@@ -246,7 +261,11 @@ function Swarm({
           }}
           scale={0.0001}
         >
-          {it.node}
+          {it.tile ? (
+            <TechTile icon={iconByName(it.tile)} shadow={shadow} />
+          ) : (
+            it.node
+          )}
         </group>
       ))}
     </group>
@@ -261,6 +280,7 @@ export default function HeroScene({
   active: boolean
 }) {
   const pointer = useRef({ x: 0, y: 0 })
+  const { resolvedTheme } = useTheme()
   const reduced = useMemo(
     () =>
       typeof window !== 'undefined' &&
@@ -286,7 +306,12 @@ export default function HeroScene({
     >
       <ambientLight intensity={1.6} />
       <directionalLight position={[5, 6, 8]} intensity={2.2} />
-      <Swarm progress={progress} pointer={pointer} reduced={reduced} />
+      <Swarm
+        progress={progress}
+        pointer={pointer}
+        reduced={reduced}
+        shadow={tileShadowFor(resolvedTheme === 'dark')}
+      />
     </Canvas>
   )
 }
