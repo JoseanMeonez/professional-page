@@ -82,8 +82,6 @@
   },
   "Tech": {
     "heading": "Tech stack",
-    "count": "Tecnologías en 3D",
-    "keepScrolling": "02 — Sigue bajando",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
@@ -129,6 +127,8 @@
     "intro": "Plataformas empresariales, CRMs y experimentos open source, construidos de principio a fin.",
     "filterLabel": "Filtrar:",
     "filterGroup": "Filtrar proyectos",
+    "previous": "Proyectos anteriores",
+    "next": "Siguientes proyectos",
     "filters": {
       "all": "Todos",
       "ai": "IA",

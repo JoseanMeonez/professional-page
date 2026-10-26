@@ -18,6 +18,12 @@ const config = {
       }
     },
     extend: {
+      // Height breakpoints: every section is sized to fit one screen, so short
+      // laptop and phone screens need their own tightening.
+      screens: {
+        short: { raw: '(max-height: 820px)' },
+        tiny: { raw: '(max-height: 700px)' }
+      },
       colors: {
         bg: 'var(--bg)',
         'bg-alt': 'var(--bg-alt)',

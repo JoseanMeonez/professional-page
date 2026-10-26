@@ -97,112 +97,115 @@ export default function FeaturedMcp() {
   )
 
   return (
-    <div ref={root} className='mt-20 [perspective:1600px]'>
-      <article className='mcp-card nb-card relative grid overflow-visible bg-nb-violet text-on-accent shadow-nb-xl will-change-transform [--line:#0a0a0a] lg:grid-cols-[1.15fr_1fr]'>
+    <div ref={root} className='mt-[10svh] [perspective:1600px]'>
+      <article className='mcp-card nb-card relative overflow-visible bg-nb-violet text-on-accent shadow-nb-xl will-change-transform [--line:#0a0a0a]'>
         <span className='mcp-sticker nb-border absolute -left-4 -top-6 z-20 grid size-24 -rotate-12 place-items-center rounded-full bg-nb-yellow text-center font-display text-sm uppercase leading-tight shadow-nb sm:-left-6 sm:size-28'>
           {t('sticker')}
           <br />
           MIT
         </span>
 
-        {/* Terminal replay */}
-        <div
-          className='order-last flex items-center border-t-3 border-[#0a0a0a] p-4 sm:p-8 lg:order-first lg:border-r-3 lg:border-t-0'
-          aria-hidden
-        >
-          <div className='nb-border w-full overflow-hidden rounded-lg bg-[#0a0a0a] shadow-nb-lg'>
-            <div className='flex items-center gap-2 border-b-3 border-[#0a0a0a] bg-nb-cyan px-3 py-2'>
-              <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-red' />
-              <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-orange' />
-              <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-lime' />
-              <span className='ml-2 truncate font-mono text-[10px] font-bold'>
-                claude — servicenow-mcp (stdio)
-              </span>
-            </div>
-            <div className='space-y-2 p-4 font-mono text-[11px] leading-relaxed text-[#f5f0e1] sm:text-xs'>
-              {SESSION.map((line, i) =>
-                line.kind === 'tool' ? (
-                  <div key={i} className='mcp-line flex gap-2 pl-4'>
-                    <span className='text-nb-violet'>⚙</span>
-                    <span className='min-w-0 break-words'>
-                      <span className='font-bold text-nb-violet'>
-                        {line.tool}
-                      </span>{' '}
-                      <span className='text-[#c4bcab]'>{line.args}</span>
-                    </span>
-                  </div>
-                ) : (
-                  <div
-                    key={i}
-                    className={`mcp-line flex gap-2 ${line.kind === 'prompt' ? '' : 'pl-4'} ${LINE_STYLE[line.kind]}`}
-                  >
-                    <span className='font-bold'>{LINE_MARK[line.kind]}</span>
-                    <span className='min-w-0 break-words'>
-                      {t(`terminal.${line.message}`)}
-                    </span>
-                  </div>
-                )
-              )}
-              <div className='mcp-line flex gap-2 text-nb-yellow'>
-                <span className='font-bold'>&gt;</span>
-                <span className='h-4 w-2 animate-pulse bg-nb-yellow' />
+        {/* Phones: info and terminal are two swipeable panels so the card fits one screen. */}
+        <div className='flex snap-x snap-mandatory overflow-x-auto rounded-[7px] sm:grid sm:overflow-visible lg:grid-cols-[1.15fr_1fr]'>
+          {/* Terminal replay */}
+          <div
+            className='order-last flex w-[88%] shrink-0 snap-start items-center border-l-3 border-[#0a0a0a] p-4 sm:w-auto sm:border-l-0 sm:border-t-3 sm:p-[clamp(1.25rem,4svh,2rem)] lg:order-first lg:border-r-3 lg:border-t-0'
+            aria-hidden
+          >
+            <div className='nb-border w-full overflow-hidden rounded-lg bg-[#0a0a0a] shadow-nb-lg'>
+              <div className='flex items-center gap-2 border-b-3 border-[#0a0a0a] bg-nb-cyan px-3 py-2'>
+                <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-red' />
+                <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-orange' />
+                <span className='size-3 rounded-full border-2 border-[#0a0a0a] bg-nb-lime' />
+                <span className='ml-2 truncate font-mono text-[10px] font-bold'>
+                  claude — servicenow-mcp (stdio)
+                </span>
+              </div>
+              <div className='space-y-[0.7svh] p-[clamp(0.75rem,2svh,1rem)] font-mono text-[clamp(10px,1.6svh,12px)] leading-snug text-[#f5f0e1]'>
+                {SESSION.map((line, i) =>
+                  line.kind === 'tool' ? (
+                    <div key={i} className='mcp-line flex gap-2 pl-4'>
+                      <span className='text-nb-violet'>⚙</span>
+                      <span className='min-w-0 break-words'>
+                        <span className='font-bold text-nb-violet'>
+                          {line.tool}
+                        </span>{' '}
+                        <span className='text-[#c4bcab]'>{line.args}</span>
+                      </span>
+                    </div>
+                  ) : (
+                    <div
+                      key={i}
+                      className={`mcp-line flex gap-2 ${line.kind === 'prompt' ? '' : 'pl-4'} ${LINE_STYLE[line.kind]}`}
+                    >
+                      <span className='font-bold'>{LINE_MARK[line.kind]}</span>
+                      <span className='min-w-0 break-words'>
+                        {t(`terminal.${line.message}`)}
+                      </span>
+                    </div>
+                  )
+                )}
+                <div className='mcp-line flex gap-2 text-nb-yellow'>
+                  <span className='font-bold'>&gt;</span>
+                  <span className='h-4 w-2 animate-pulse bg-nb-yellow' />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className='p-6 pt-12 sm:p-10'>
-          <div className='mb-4 flex flex-wrap gap-2'>
-            <span className='nb-chip !border-[#0a0a0a] !bg-[#0a0a0a] !text-nb-violet'>
-              {t('featured')}
-            </span>
-            <span className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'>
-              {t('tag')}
-            </span>
-          </div>
-          <h3 className='font-display text-[clamp(2.4rem,5.5vw,4.5rem)] uppercase leading-[0.85]'>
-            ServiceNow
-            <br />
-            MCP
-          </h3>
-          <p className='mt-2 font-mono text-sm font-bold uppercase'>
-            {t('subtitle')}
-          </p>
-          <p className='mt-5 max-w-xl text-base font-medium leading-relaxed sm:text-lg'>
-            {t('description')}
-          </p>
-
-          <ul className='mt-6 grid gap-2'>
-            {(t.raw('features') as string[]).map(f => (
-              <li
-                key={f}
-                className='mcp-feature flex items-start gap-2 text-sm font-bold'
-              >
-                <span className='mt-1 size-3 shrink-0 rotate-45 border-2 border-[#0a0a0a] bg-white' />
-                {f}
-              </li>
-            ))}
-          </ul>
-
-          <div className='mt-6 flex flex-wrap gap-1.5'>
-            {STACK.map(tech => (
-              <span
-                key={tech}
-                className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'
-              >
-                {tech}
+          <div className='w-[88%] shrink-0 snap-start p-[clamp(1.25rem,4svh,2.5rem)] pt-12 sm:w-auto'>
+            <div className='mb-[1.5svh] flex flex-wrap gap-2'>
+              <span className='nb-chip !border-[#0a0a0a] !bg-[#0a0a0a] !text-nb-violet'>
+                {t('featured')}
               </span>
-            ))}
-          </div>
+              <span className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'>
+                {t('tag')}
+              </span>
+            </div>
+            <h3 className='font-display text-[clamp(2.2rem,min(5.5vw,8svh),4.5rem)] uppercase leading-[0.85]'>
+              ServiceNow
+              <br />
+              MCP
+            </h3>
+            <p className='mt-[1svh] font-mono text-[clamp(0.7rem,1.8svh,0.875rem)] font-bold uppercase'>
+              {t('subtitle')}
+            </p>
+            <p className='mt-[2svh] max-w-xl text-[clamp(0.85rem,2.1svh,1.125rem)] font-medium leading-relaxed'>
+              {t('description')}
+            </p>
 
-          <a
-            href={REPO}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='nb-btn mt-8 bg-[#0a0a0a] px-5 py-3 !text-nb-violet'
-          >
-            <FaGithub className='size-4' /> {t('github')}
-          </a>
+            <ul className='mt-[2svh] hidden gap-y-[0.8svh] sm:grid'>
+              {(t.raw('features') as string[]).map(f => (
+                <li
+                  key={f}
+                  className='mcp-feature flex items-start gap-2 text-[clamp(0.75rem,1.8svh,0.875rem)] font-bold'
+                >
+                  <span className='mt-1 size-3 shrink-0 rotate-45 border-2 border-[#0a0a0a] bg-white' />
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <div className='mt-[2svh] flex flex-wrap gap-1.5'>
+              {STACK.map(tech => (
+                <span
+                  key={tech}
+                  className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <a
+              href={REPO}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='nb-btn mt-[3svh] bg-[#0a0a0a] px-5 py-[clamp(0.5rem,1.5svh,0.75rem)] !text-nb-violet'
+            >
+              <FaGithub className='size-4' /> {t('github')}
+            </a>
+          </div>
         </div>
       </article>
     </div>

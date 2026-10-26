@@ -131,7 +131,7 @@ export default function Hero() {
     <section
       ref={root}
       id='top'
-      className='relative flex min-h-[100svh] items-center overflow-hidden bg-bg pb-16 pt-28'
+      className='relative flex min-h-[100svh] items-center overflow-hidden bg-bg pb-[clamp(1rem,4svh,3rem)] pt-[clamp(5rem,12svh,7rem)]'
     >
       <div className='bg-grid pointer-events-none absolute inset-0' />
 
@@ -142,8 +142,9 @@ export default function Hero() {
       </div>
 
       <div className='container relative'>
-        <div className='max-w-4xl'>
-          <div className='hero-reveal mb-6 flex flex-wrap items-center gap-3'>
+        {/* Everything is sized off the viewport height too, so the whole hero fits one screen. */}
+        <div className='max-w-4xl lg:max-w-5xl'>
+          <div className='hero-reveal mb-[2.5svh] flex flex-wrap items-center gap-3'>
             <span className='nb-chip !bg-nb-lime !text-on-accent'>
               <span className='size-2 animate-pulse rounded-full bg-[#0a0a0a]' />
               {t('available')}
@@ -153,16 +154,16 @@ export default function Hero() {
 
           <h1 className='font-display uppercase leading-[0.86] tracking-tight'>
             <span className='sr-only'>Andrés Meoñez — {roles[0]}</span>
-            <span className='hero-line-1 block text-[clamp(3.6rem,13vw,10.5rem)]'>
+            <span className='hero-line-1 block text-[clamp(2.6rem,min(13vw,14svh),10.5rem)]'>
               <SplitWord text='Andrés' />
             </span>
-            <span className='hero-line-2 relative block text-[clamp(3.6rem,13vw,10.5rem)]'>
+            <span className='hero-line-2 relative block text-[clamp(2.6rem,min(13vw,14svh),10.5rem)]'>
               {/* The yellow box is the word's own clip container, so it always sits right under the letters. */}
               <SplitWord
                 text='Meoñez'
                 className='nb-border mt-[0.06em] -rotate-1 rounded-lg bg-nb-yellow px-[0.1em] pb-[0.04em] pt-[0.16em] text-[#0a0a0a] shadow-nb'
               />
-              <span className='hero-sticker nb-border absolute -top-6 right-0 hidden size-28 rotate-12 place-items-center rounded-full bg-nb-pink text-center font-mono text-[11px] font-bold uppercase leading-tight text-on-accent shadow-nb sm:grid md:-right-10'>
+              <span className='hero-sticker nb-border absolute -top-6 right-0 hidden size-[clamp(5rem,13svh,7rem)] rotate-12 place-items-center rounded-full bg-nb-pink text-center font-mono text-[11px] font-bold uppercase leading-tight text-on-accent shadow-nb sm:grid md:-right-10'>
                 <span className='animate-nb-spin absolute inset-1 rounded-full border-2 border-dashed border-[#0a0a0a]' />
                 {t.rich('sticker', { br: () => <br /> })}
               </span>
@@ -170,7 +171,7 @@ export default function Hero() {
           </h1>
 
           <div className='hero-body'>
-            <div className='hero-reveal mt-8 flex items-center gap-3 font-mono text-lg font-bold sm:text-2xl'>
+            <div className='hero-reveal mt-[3svh] flex items-center gap-3 font-mono text-[clamp(1rem,min(4.5vw,3svh),1.5rem)] font-bold'>
               <span className='nb-border rounded-md bg-ink px-2 text-bg'>
                 &gt;_
               </span>
@@ -181,7 +182,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <p className='hero-reveal nb-card mt-6 max-w-xl bg-paper p-5 text-base leading-relaxed sm:text-lg'>
+            <p className='hero-reveal nb-card mt-[2.5svh] max-w-xl bg-paper p-[clamp(0.75rem,2svh,1.25rem)] text-[clamp(0.9rem,min(4vw,2.3svh),1.125rem)] leading-relaxed'>
               {t.rich('bio', {
                 sn: chunks => (
                   <mark className='rounded bg-nb-cyan px-1 text-on-accent'>
@@ -195,44 +196,45 @@ export default function Hero() {
                 )
               })}
             </p>
+          </div>
 
-            <div className='hero-reveal mt-8 flex flex-wrap gap-4'>
+          <div className='mt-[4svh] flex flex-col gap-[3svh] lg:flex-row lg:items-end lg:gap-8'>
+            <div className='hero-reveal flex flex-wrap gap-2.5 sm:gap-4'>
               <a
                 href='#projects'
-                className='nb-btn bg-nb-yellow px-6 py-4 text-base'
+                className='nb-btn bg-nb-yellow px-3 py-[clamp(0.6rem,1.6svh,1rem)] text-xs sm:px-6 sm:text-base'
               >
-                {t('viewProjects')} <HiArrowDown className='size-5' />
+                {t('viewProjects')} <HiArrowDown className='size-4 sm:size-5' />
               </a>
               <a
                 href='#contact'
-                className='nb-btn bg-paper px-6 py-4 text-base !text-ink'
+                className='nb-btn bg-paper px-3 py-[clamp(0.6rem,1.6svh,1rem)] text-xs !text-ink sm:px-6 sm:text-base'
               >
-                {t('contactMe')} <HiArrowUpRight className='size-5' />
+                {t('contactMe')} <HiArrowUpRight className='size-4 sm:size-5' />
               </a>
             </div>
-          </div>
-
-          <div className='hero-stats mt-12 grid max-w-xl grid-cols-3 gap-3 sm:gap-4'>
-            {STATS.map(s => (
-              <div
-                key={s.label}
-                className={`hero-stat nb-card ${s.color} p-3 text-on-accent sm:p-4`}
-              >
-                <div className='font-display text-3xl sm:text-4xl'>
-                  {s.value}
+            <div className='hero-stats grid max-w-xl grid-cols-3 gap-3 sm:gap-4 lg:w-[30rem] lg:shrink-0 [@media(max-width:639px)_and_(max-height:660px)]:hidden'>
+              {STATS.map(s => (
+                <div
+                  key={s.label}
+                  className={`hero-stat nb-card ${s.color} p-[clamp(0.5rem,1.6svh,1rem)] text-on-accent`}
+                >
+                  <div className='font-display text-[clamp(1.5rem,min(7vw,4.5svh),2.25rem)] leading-none'>
+                    {s.value}
+                  </div>
+                  <div className='mt-1 font-mono text-[10px] font-bold uppercase sm:text-xs'>
+                    {t(s.label)}
+                  </div>
                 </div>
-                <div className='font-mono text-[10px] font-bold uppercase sm:text-xs'>
-                  {t(s.label)}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       <a
         href='#services'
-        className='animate-nb-bob absolute bottom-6 right-6 hidden items-center gap-2 font-mono text-xs font-bold uppercase md:flex'
+        className='animate-nb-bob absolute bottom-6 right-6 hidden items-center gap-2 font-mono text-xs font-bold uppercase md:flex short:hidden'
       >
         {t('scroll')} <HiArrowDown className='size-4' />
       </a>

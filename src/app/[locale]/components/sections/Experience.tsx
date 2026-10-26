@@ -143,25 +143,25 @@ export default function Experience() {
     <section
       ref={root}
       id='experience'
-      className='relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-y-3 border-line bg-nb-blue py-24 text-on-accent'
+      className='relative flex min-h-[100svh] flex-col justify-center overflow-hidden border-y-3 border-line bg-nb-blue pb-[3svh] pt-[clamp(4.25rem,10svh,6rem)] text-on-accent'
     >
       <div className='bg-dots pointer-events-none absolute inset-0 opacity-60 [--line:#0a0a0a]' />
 
       <div ref={viewport} className='relative overflow-x-auto'>
         <div
           ref={track}
-          className='flex w-max items-center gap-8 px-5 pb-6 [perspective:1200px] sm:gap-12 sm:px-10'
+          className='flex w-max items-center gap-6 px-5 pb-[2svh] [perspective:1200px] sm:gap-10 sm:px-10'
         >
           <div className='w-[min(80vw,520px)] shrink-0'>
-            <span className='nb-chip mb-6 !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'>
+            <span className='nb-chip mb-[2svh] !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'>
               {t('chip')}
             </span>
-            <h2 className='font-display text-[clamp(3rem,9vw,7.5rem)] uppercase leading-[0.85] text-white [-webkit-text-stroke:3px_#0a0a0a] [paint-order:stroke_fill]'>
+            <h2 className='font-display text-[clamp(2.4rem,min(9vw,12svh),7.5rem)] uppercase leading-[0.85] text-white [-webkit-text-stroke:3px_#0a0a0a] [paint-order:stroke_fill]'>
               {t('title1')}
               <br />
               {t('title2')}
             </h2>
-            <p className='mt-6 flex items-center gap-3 font-mono text-sm font-bold uppercase'>
+            <p className='mt-[2svh] flex items-center gap-3 font-mono text-sm font-bold uppercase'>
               {t('hint')} <HiArrowLongRight className='size-6' />
             </p>
           </div>
@@ -169,9 +169,9 @@ export default function Experience() {
           {ENTRIES.map(entry => (
             <article
               key={entry.id}
-              className={`exp-card nb-card w-[min(82vw,440px)] shrink-0 ${entry.color} p-6 shadow-nb-lg will-change-transform [--line:#0a0a0a] sm:p-8`}
+              className={`exp-card nb-card w-[min(82vw,440px)] shrink-0 ${entry.color} p-[clamp(1rem,3svh,2rem)] shadow-nb-lg will-change-transform [--line:#0a0a0a]`}
             >
-              <div className='mb-5 flex items-center justify-between gap-3'>
+              <div className='mb-[2svh] flex items-center justify-between gap-3'>
                 <span className='nb-border rounded-md bg-white px-2.5 py-1 font-mono text-xs font-bold'>
                   {entry.from} – {entry.to ?? t('present')}
                 </span>
@@ -179,22 +179,22 @@ export default function Experience() {
                   {t(entry.type)}
                 </span>
               </div>
-              <h3 className='font-display text-2xl uppercase leading-tight sm:text-3xl'>
+              <h3 className='font-display text-[clamp(1.25rem,min(6vw,3.8svh),1.875rem)] uppercase leading-tight'>
                 {t(`entries.${entry.id}.role`)}
               </h3>
               <p className='mt-1 font-mono text-sm font-bold'>
                 @ {entry.organization ?? t(`entries.${entry.id}.organization`)}
               </p>
-              <p className='mt-4 text-[15px] font-medium leading-relaxed'>
+              <p className='mt-[1.5svh] text-[clamp(0.78rem,2svh,0.95rem)] font-medium leading-relaxed tiny:leading-snug'>
                 {t(`entries.${entry.id}.description`)}
               </p>
-              <div className='mt-5 flex flex-wrap gap-1.5'>
+              <div className='mt-[2svh] flex flex-wrap gap-1.5'>
                 {(
                   entry.tags ?? (t.raw(`entries.${entry.id}.tags`) as string[])
                 ).map(tag => (
                   <span
                     key={tag}
-                    className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'
+                    className='nb-chip !border-[#0a0a0a] !bg-white !px-2 !py-0.5 !text-[10px] !text-[#0a0a0a]'
                   >
                     {tag}
                   </span>
@@ -216,7 +216,7 @@ export default function Experience() {
         </div>
       </div>
 
-      <div className='container relative mt-6 motion-reduce:hidden'>
+      <div className='container relative mt-[2svh] motion-reduce:hidden'>
         <div className='nb-border h-4 overflow-hidden rounded-full bg-white [--line:#0a0a0a]'>
           <div className='exp-progress h-full origin-left scale-x-0 bg-nb-pink' />
         </div>

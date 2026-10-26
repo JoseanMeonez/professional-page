@@ -91,14 +91,14 @@ export default function Contact() {
     <section
       ref={root}
       id='contact'
-      className='relative overflow-hidden border-t-3 border-line bg-nb-yellow py-24 text-on-accent [--line:#0a0a0a]'
+      className='relative flex min-h-[100svh] items-center overflow-hidden border-t-3 border-line bg-nb-yellow pb-[5svh] pt-[clamp(5rem,11svh,6.5rem)] text-on-accent [--line:#0a0a0a]'
     >
       <div className='bg-dots pointer-events-none absolute inset-0' />
-      <div className='container relative'>
-        <span className='nb-chip mb-8 !bg-white !text-[#0a0a0a]'>
+      <div className='container relative w-full'>
+        <span className='nb-chip mb-[2.5svh] !bg-white !text-[#0a0a0a]'>
           {t('chip')}
         </span>
-        <h2 className='font-display text-[clamp(2rem,7.5vw,8.5rem)] uppercase leading-[0.9]'>
+        <h2 className='font-display text-[clamp(1.9rem,min(7.5vw,10svh),8.5rem)] uppercase leading-[0.9]'>
           {lines.map((line, i) => (
             <span
               key={line}
@@ -109,27 +109,29 @@ export default function Contact() {
           ))}
         </h2>
 
-        <p className='mx-auto mt-10 max-w-xl text-center text-lg font-medium'>
+        <p className='mx-auto mt-[3svh] max-w-xl text-center text-[clamp(0.9rem,2.2svh,1.125rem)] font-medium'>
           {t('intro')}
         </p>
 
-        <div className='contact-grid mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>
+        <div className='contact-grid mt-[4svh] grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4'>
           {CHANNELS.map(({ label, value, href, icon: Icon, color }) => (
             <a
               key={label}
               href={href}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className={`contact-tile nb-card nb-lift group flex flex-col gap-6 ${color} p-5 text-[#0a0a0a]`}
+              className={`contact-tile nb-card nb-lift group flex min-w-0 flex-col gap-[2svh] ${color} p-[clamp(0.75rem,2.5svh,1.25rem)] text-[#0a0a0a]`}
             >
               <div className='flex items-center justify-between'>
-                <span className='nb-border grid size-12 place-items-center rounded-lg bg-white'>
-                  <Icon className='size-6' />
+                <span className='nb-border grid size-[clamp(2.25rem,6svh,3rem)] place-items-center rounded-lg bg-white'>
+                  <Icon className='size-1/2' />
                 </span>
                 <HiArrowUpRight className='size-7 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1' />
               </div>
               <div>
-                <div className='font-display text-2xl uppercase'>{label}</div>
+                <div className='font-display text-[clamp(1rem,min(5vw,3.2svh),1.5rem)] uppercase'>
+                  {label}
+                </div>
                 <div className='truncate font-mono text-xs font-bold'>
                   {value}
                 </div>

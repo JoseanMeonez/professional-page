@@ -3,7 +3,7 @@ import { Flip, gsap, MOTION_OK, ScrollTrigger, useGSAP } from '@/src/lib/gsap'
 import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
-import { HiArrowUpRight } from 'react-icons/hi2'
+import { HiArrowLeft, HiArrowRight, HiArrowUpRight } from 'react-icons/hi2'
 import FeaturedCripco from './FeaturedCripco'
 import FeaturedMcp from './FeaturedMcp'
 
@@ -97,6 +97,15 @@ const PROJECTS: {
 export default function Projects() {
   const root = useRef<HTMLElement>(null)
   const [filter, setFilter] = useState<Filter>('all')
+  const rail = useRef<HTMLDivElement>(null)
+
+  // Move the carousel by one card (card width + gap).
+  const slide = (dir: 1 | -1) => {
+    const el = rail.current
+    const card = el?.querySelector<HTMLElement>('.project-card:not(.hidden)')
+    if (!el || !card) return
+    el.scrollBy({ left: dir * (card.offsetWidth + 24), behavior: 'smooth' })
+  }
   const t = useTranslations('Projects')
   const flipState = useRef<Flip.FlipState | null>(null)
 
@@ -167,16 +176,16 @@ export default function Projects() {
     <section
       ref={root}
       id='projects'
-      className='relative overflow-hidden bg-bg py-24'
+      className='relative overflow-hidden bg-bg py-[10svh]'
     >
       <div className='bg-grid pointer-events-none absolute inset-0' />
       <div className='container relative'>
-        <div className='projects-heading mb-14 flex flex-wrap items-end justify-between gap-6'>
+        <div className='projects-heading mb-[6svh] flex flex-wrap items-end justify-between gap-6'>
           <div>
-            <span className='nb-chip mb-6 !bg-nb-pink !text-on-accent'>
+            <span className='nb-chip mb-[2svh] !bg-nb-pink !text-on-accent'>
               {t('chip')}
             </span>
-            <h2 className='font-display text-[clamp(3rem,9vw,7.5rem)] uppercase leading-[0.85]'>
+            <h2 className='font-display text-[clamp(2.4rem,min(9vw,11svh),7.5rem)] uppercase leading-[0.85]'>
               <span className='projects-word block'>{t('title1')}</span>
               <span className='projects-word nb-outline-text block'>
                 {t('title2')}
@@ -189,87 +198,113 @@ export default function Projects() {
         <FeaturedCripco />
         <FeaturedMcp />
 
-        <div
-          className='mb-10 mt-20 flex flex-wrap items-center gap-3'
-          role='group'
-          aria-label={t('filterGroup')}
-        >
-          <span className='mr-2 font-mono text-xs font-bold uppercase text-muted'>
-            {t('filterLabel')}
-          </span>
-          {FILTERS.map(f => (
-            <button
-              key={f}
-              onClick={() => applyFilter(f)}
-              aria-pressed={filter === f}
-              className={`nb-btn px-4 py-2 ${filter === f ? 'bg-nb-yellow' : 'bg-paper !text-ink'}`}
+        {/* Filters + a swipeable rail of cards: the whole list fits one screen. */}
+        <div className='projects-list mt-[10svh]'>
+          <div className='mb-[3svh] flex flex-wrap items-center gap-3'>
+            <div
+              className='flex flex-wrap items-center gap-3'
+              role='group'
+              aria-label={t('filterGroup')}
             >
-              {t(`filters.${f}`)}
-            </button>
-          ))}
-        </div>
-
-        <div className='projects-grid grid grid-cols-1 gap-8 [perspective:1400px] md:grid-cols-2 lg:grid-cols-3'>
-          {PROJECTS.map((project, i) => {
-            const visible =
-              filter === 'all' || project.categories.includes(filter)
-            return (
-              <article
-                key={project.id}
-                className={`project-card nb-card nb-lift flex flex-col overflow-hidden bg-paper ${visible ? '' : 'hidden'}`}
-              >
-                <div
-                  className={`flex items-center justify-between border-b-3 border-line ${project.color} px-5 py-3 text-on-accent`}
+              <span className='mr-2 font-mono text-xs font-bold uppercase text-muted'>
+                {t('filterLabel')}
+              </span>
+              {FILTERS.map(f => (
+                <button
+                  key={f}
+                  onClick={() => applyFilter(f)}
+                  aria-pressed={filter === f}
+                  className={`nb-btn px-4 py-2 ${filter === f ? 'bg-nb-yellow' : 'bg-paper !text-ink'}`}
                 >
-                  <span className='font-mono text-xs font-bold uppercase'>
-                    {project.categories.map(c => t(`filters.${c}`)).join(' · ')}
-                  </span>
-                  <span className='font-display text-2xl'>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                </div>
-                <div className='flex flex-1 flex-col p-5'>
-                  <h3 className='font-display text-2xl uppercase leading-tight'>
-                    {t(`items.${project.id}.title`)}
-                  </h3>
-                  <p className='mt-3 flex-1 text-[15px] leading-relaxed text-muted'>
-                    {t(`items.${project.id}.description`)}
-                  </p>
-                  {project.technologies.length > 0 && (
-                    <div className='mt-5 flex flex-wrap gap-1.5'>
-                      {project.technologies.map(tech => (
-                        <span key={tech} className='nb-chip'>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <div className='mt-6 flex gap-3'>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='nb-btn bg-paper px-3 py-2 !text-ink'
-                      >
-                        <FaGithub className='size-4' /> {t('code')}
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='nb-btn bg-nb-lime px-3 py-2'
-                      >
-                        {t('live')} <HiArrowUpRight className='size-4' />
-                      </a>
-                    )}
+                  {t(`filters.${f}`)}
+                </button>
+              ))}
+            </div>
+            <div className='ml-auto hidden gap-3 sm:flex'>
+              <button
+                onClick={() => slide(-1)}
+                className='nb-btn size-11 bg-paper !p-0 !text-ink'
+                aria-label={t('previous')}
+              >
+                <HiArrowLeft className='size-5' />
+              </button>
+              <button
+                onClick={() => slide(1)}
+                className='nb-btn size-11 bg-nb-yellow !p-0'
+                aria-label={t('next')}
+              >
+                <HiArrowRight className='size-5' />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={rail}
+            className='projects-grid -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-6 overflow-x-auto px-5 pb-6 pt-2 [perspective:1400px]'
+          >
+            {PROJECTS.map((project, i) => {
+              const visible =
+                filter === 'all' || project.categories.includes(filter)
+              return (
+                <article
+                  key={project.id}
+                  className={`project-card nb-card nb-lift flex w-[min(82vw,22rem)] shrink-0 snap-start flex-col overflow-hidden bg-paper ${visible ? '' : 'hidden'}`}
+                >
+                  <div
+                    className={`flex items-center justify-between border-b-3 border-line ${project.color} px-5 py-[clamp(0.4rem,1.3svh,0.75rem)] text-on-accent`}
+                  >
+                    <span className='font-mono text-xs font-bold uppercase'>
+                      {project.categories
+                        .map(c => t(`filters.${c}`))
+                        .join(' · ')}
+                    </span>
+                    <span className='font-display text-2xl'>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
-                </div>
-              </article>
-            )
-          })}
+                  <div className='flex flex-1 flex-col p-[clamp(0.9rem,2.5svh,1.25rem)]'>
+                    <h3 className='font-display text-[clamp(1.15rem,3svh,1.5rem)] uppercase leading-tight'>
+                      {t(`items.${project.id}.title`)}
+                    </h3>
+                    <p className='mt-[1.5svh] flex-1 text-[clamp(0.8rem,2svh,0.95rem)] leading-relaxed text-muted'>
+                      {t(`items.${project.id}.description`)}
+                    </p>
+                    {project.technologies.length > 0 && (
+                      <div className='mt-[2svh] flex flex-wrap gap-1.5'>
+                        {project.technologies.map(tech => (
+                          <span key={tech} className='nb-chip'>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className='mt-[2.5svh] flex gap-3'>
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='nb-btn bg-paper px-3 py-2 !text-ink'
+                        >
+                          <FaGithub className='size-4' /> {t('code')}
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='nb-btn bg-nb-lime px-3 py-2'
+                        >
+                          {t('live')} <HiArrowUpRight className='size-4' />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
