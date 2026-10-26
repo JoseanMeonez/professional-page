@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useParams, useSelectedLayoutSegments } from 'next/navigation'
 import React, { useRef, useState } from 'react'
@@ -20,6 +21,7 @@ const LangSwitcher: React.FC = () => {
   const urlSegments = useSelectedLayoutSegments()
   const { locale } = useParams<{ locale: string }>()
   const [open, setOpen] = useState(false)
+  const t = useTranslations('Nav')
   const ref = useRef<HTMLDivElement>(null)
   useOnClickOutside(ref, () => setOpen(false))
 
@@ -30,7 +32,7 @@ const LangSwitcher: React.FC = () => {
         onClick={() => setOpen(o => !o)}
         aria-haspopup='menu'
         aria-expanded={open}
-        aria-label='Change language'
+        aria-label={t('language')}
       >
         <FiGlobe className='size-4' />
         <span>{locale}</span>

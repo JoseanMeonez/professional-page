@@ -12,6 +12,7 @@ import {
   Rubik,
   Space_Grotesk
 } from 'next/font/google'
+import { getTranslations } from 'next-intl/server'
 import NextTopLoader from 'nextjs-toploader'
 import { Header } from './components/Header'
 import Footer from './components/Footer'
@@ -56,9 +57,9 @@ export async function generateMetadata({
 }: {
   params: { locale: string }
 }) {
-  const title = 'Andrés Meoñez | Full Stack Developer'
-  const description =
-    '4+ years delivering enterprise software. Specialized in ServiceNow, .NET, Node.js, Go, Angular, React, and AI-assisted development.'
+  const t = await getTranslations({ locale, namespace: 'Meta' })
+  const title = t('title')
+  const description = t('description')
 
   return {
     metadataBase: new URL(baseUrl),

@@ -1,5 +1,6 @@
 'use client'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 import { useRef } from 'react'
 import { HiArrowDown, HiArrowUpRight } from 'react-icons/hi2'
@@ -8,18 +9,11 @@ import { useInViewport } from '../three/useInViewport'
 
 const HeroScene = dynamic(() => import('../three/HeroScene'), { ssr: false })
 
-const ROLES = [
-  'Software Engineer',
-  'ServiceNow Consultant',
-  'Full Stack Developer',
-  'Backend Architect'
-]
-
 const STATS = [
-  { value: '4+', label: 'Years shipping', color: 'bg-nb-yellow' },
-  { value: '7', label: 'Featured projects', color: 'bg-nb-pink' },
-  { value: '27', label: 'Technologies', color: 'bg-nb-cyan' }
-]
+  { value: '4+', label: 'years', color: 'bg-nb-yellow' },
+  { value: '8', label: 'featured', color: 'bg-nb-pink' },
+  { value: '27', label: 'technologies', color: 'bg-nb-cyan' }
+] as const
 
 function SplitWord({
   text,
@@ -46,6 +40,8 @@ export default function Hero() {
   const root = useRef<HTMLElement>(null)
   const progress = useRef(0)
   const active = useInViewport(root)
+  const t = useTranslations('Hero')
+  const roles: string[] = t.raw('roles')
 
   useGSAP(
     () => {
@@ -53,7 +49,7 @@ export default function Hero() {
       const roleEl = root.current!.querySelector<HTMLElement>('.hero-role')!
       let roleIndex = 0
       const swap = () => {
-        roleIndex = (roleIndex + 1) % ROLES.length
+        roleIndex = (roleIndex + 1) % roles.length
         gsap
           .timeline()
           .to(roleEl, {
@@ -63,7 +59,7 @@ export default function Hero() {
             ease: 'power2.in'
           })
           .call(() => {
-            roleEl.textContent = ROLES[roleIndex]
+            roleEl.textContent = roles[roleIndex]
           })
           .fromTo(
             roleEl,
@@ -150,13 +146,13 @@ export default function Hero() {
           <div className='hero-reveal mb-6 flex flex-wrap items-center gap-3'>
             <span className='nb-chip !bg-nb-lime !text-on-accent'>
               <span className='size-2 animate-pulse rounded-full bg-[#0a0a0a]' />
-              Available for work
+              {t('available')}
             </span>
-            <span className='nb-chip'>Honduras · Remote</span>
+            <span className='nb-chip'>{t('location')}</span>
           </div>
 
           <h1 className='font-display uppercase leading-[0.86] tracking-tight'>
-            <span className='sr-only'>Andrés Meoñez — {ROLES[0]}</span>
+            <span className='sr-only'>Andrés Meoñez — {roles[0]}</span>
             <span className='hero-line-1 block text-[clamp(3.6rem,13vw,10.5rem)]'>
               <SplitWord text='Andrés' />
             </span>
@@ -168,11 +164,7 @@ export default function Hero() {
               />
               <span className='hero-sticker nb-border absolute -top-6 right-0 hidden size-28 rotate-12 place-items-center rounded-full bg-nb-pink text-center font-mono text-[11px] font-bold uppercase leading-tight text-on-accent shadow-nb sm:grid md:-right-10'>
                 <span className='animate-nb-spin absolute inset-1 rounded-full border-2 border-dashed border-[#0a0a0a]' />
-                Full
-                <br />
-                Stack
-                <br />
-                Dev
+                {t.rich('sticker', { br: () => <br /> })}
               </span>
             </span>
           </h1>
@@ -184,21 +176,24 @@ export default function Hero() {
               </span>
               <span className='relative inline-block h-[1.4em] overflow-hidden'>
                 <span className='hero-role inline-block' aria-live='polite'>
-                  {ROLES[0]}
+                  {roles[0]}
                 </span>
               </span>
             </div>
 
             <p className='hero-reveal nb-card mt-6 max-w-xl bg-paper p-5 text-base leading-relaxed sm:text-lg'>
-              4+ years delivering enterprise platform architecture. Skilled in{' '}
-              <mark className='rounded bg-nb-cyan px-1 text-on-accent'>
-                ServiceNow
-              </mark>
-              ,{' '}
-              <mark className='rounded bg-nb-violet px-1 text-on-accent'>
-                .NET
-              </mark>
-              , Node, Go, Angular/React and AI-assisted development.
+              {t.rich('bio', {
+                sn: chunks => (
+                  <mark className='rounded bg-nb-cyan px-1 text-on-accent'>
+                    {chunks}
+                  </mark>
+                ),
+                net: chunks => (
+                  <mark className='rounded bg-nb-violet px-1 text-on-accent'>
+                    {chunks}
+                  </mark>
+                )
+              })}
             </p>
 
             <div className='hero-reveal mt-8 flex flex-wrap gap-4'>
@@ -206,13 +201,13 @@ export default function Hero() {
                 href='#projects'
                 className='nb-btn bg-nb-yellow px-6 py-4 text-base'
               >
-                View projects <HiArrowDown className='size-5' />
+                {t('viewProjects')} <HiArrowDown className='size-5' />
               </a>
               <a
                 href='#contact'
                 className='nb-btn bg-paper px-6 py-4 text-base !text-ink'
               >
-                Contact me <HiArrowUpRight className='size-5' />
+                {t('contactMe')} <HiArrowUpRight className='size-5' />
               </a>
             </div>
           </div>
@@ -227,7 +222,7 @@ export default function Hero() {
                   {s.value}
                 </div>
                 <div className='font-mono text-[10px] font-bold uppercase sm:text-xs'>
-                  {s.label}
+                  {t(s.label)}
                 </div>
               </div>
             ))}
@@ -239,7 +234,7 @@ export default function Hero() {
         href='#services'
         className='animate-nb-bob absolute bottom-6 right-6 hidden items-center gap-2 font-mono text-xs font-bold uppercase md:flex'
       >
-        Scroll <HiArrowDown className='size-4' />
+        {t('scroll')} <HiArrowDown className='size-4' />
       </a>
     </section>
   )

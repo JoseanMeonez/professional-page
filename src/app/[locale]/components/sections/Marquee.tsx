@@ -1,39 +1,18 @@
 'use client'
 import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import { PiAsteriskBold } from 'react-icons/pi'
 
 const BANDS = [
-  {
-    words: [
-      'Full Stack',
-      'ServiceNow',
-      '.NET',
-      'Next.js',
-      'Go',
-      'Angular',
-      'Clean Architecture',
-      'AI-assisted'
-    ],
-    className: 'bg-nb-yellow -rotate-2',
-    direction: -1
-  },
-  {
-    words: [
-      'Ship fast',
-      'Scale clean',
-      'Automate everything',
-      'Enterprise grade',
-      'Pixel loud'
-    ],
-    className: 'bg-ink text-bg rotate-1 -mt-4',
-    direction: 1
-  }
-]
+  { key: 'tech', className: 'bg-nb-yellow -rotate-2', direction: -1 },
+  { key: 'motto', className: 'bg-ink text-bg rotate-1 -mt-4', direction: 1 }
+] as const
 
 /** Two crossing tickers. Scroll direction flips them; scroll velocity speeds them up and skews them. */
 export default function Marquee() {
   const root = useRef<HTMLDivElement>(null)
+  const t = useTranslations('Marquee')
 
   useGSAP(
     () => {
@@ -107,7 +86,7 @@ export default function Marquee() {
           <div className='marquee-track flex w-max'>
             {[0, 1].map(copy => (
               <div key={copy} className='flex shrink-0 items-center'>
-                {band.words.map(word => (
+                {(t.raw(band.key) as string[]).map(word => (
                   <span
                     key={word}
                     className={`flex items-center gap-6 px-6 py-3 font-display text-2xl uppercase sm:text-4xl ${

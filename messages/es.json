@@ -1,19 +1,213 @@
 {
-  "About": "Acerca de",
-  "Support": "Soporte",
-  "Other": "Otros",
-  "Theme": "Tema",
-  "An": "Un",
-  "Booster": "Impulsor",
-  "to_Your_NextJS_Apps": "para tus aplicaciones NextJS",
-  "An_approachable_performant_and_versatile_boilerplate_for_building_SSR_applications": "Una plantilla accesible, eficaz y versátil para construir aplicaciones SSR.",
-  "Use_Template": "Usar plantilla",
-  "Learn_More": "¡Aprende más!",
-  "Approachable": "Accesible",
-  "Add_components_without_sending_additional_client_side_JavaScript_Built_on_the_latest_React_features": "Agrega componentes sin enviar JavaScript adicional del lado del cliente. Construido sobre las últimas características de React.",
-  "Automatic_Image_Font_and_Script_Optimizations_for_improved_UX_and_Core_Web_Vitals": "Optimizaciones automáticas de imágenes, fuentes y scripts para mejorar la UX y los Core Web Vitals.",
-  "Versatile": "Versátil",
-  "A_rich_incredibly_adoptable_template_that_scales_between_a_small_showcase_website_and_a_full_size_app": "Una plantilla increíblemente rica y adaptable que escala entre un pequeño sitio web de exhibición y una aplicación de tamaño completo.",
-  "This_is_a_simple_about_page_just_to_show_how_you_can_use_the_internationalization_in_different_pages": "Esta es una página simple sobre cómo mostrar cómo puedes usar la internacionalización en diferentes páginas",
-  "Performant": "Rendimiento"
+  "Meta": {
+    "title": "Andrés Meoñez | Desarrollador Full Stack",
+    "description": "Más de 4 años desarrollando software empresarial. Especializado en ServiceNow, .NET, Node.js, Go, Angular, React y desarrollo asistido por IA."
+  },
+  "Nav": {
+    "services": "Servicios",
+    "stack": "Stack",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "about": "Acerca de",
+    "home": "Inicio",
+    "main": "Principal",
+    "mobile": "Móvil",
+    "toggleMenu": "Abrir o cerrar menú",
+    "lightMode": "Cambiar a modo claro",
+    "darkMode": "Cambiar a modo oscuro",
+    "language": "Cambiar idioma"
+  },
+  "Hero": {
+    "available": "Disponible para trabajar",
+    "location": "Honduras · Remoto",
+    "roles": [
+      "Ingeniero de Software",
+      "Consultor ServiceNow",
+      "Desarrollador Full Stack",
+      "Arquitecto Backend"
+    ],
+    "sticker": "Dev<br></br>Full<br></br>Stack",
+    "bio": "Más de 4 años creando arquitectura de plataformas empresariales. Experiencia en <sn>ServiceNow</sn>, <net>.NET</net>, Node, Go, Angular/React y desarrollo asistido por IA.",
+    "viewProjects": "Ver proyectos",
+    "contactMe": "Contáctame",
+    "years": "Años de experiencia",
+    "featured": "Proyectos destacados",
+    "technologies": "Tecnologías",
+    "scroll": "Desliza"
+  },
+  "Marquee": {
+    "tech": [
+      "Full Stack",
+      "ServiceNow",
+      ".NET",
+      "Next.js",
+      "Go",
+      "Angular",
+      "Clean Architecture",
+      "Asistido por IA"
+    ],
+    "motto": [
+      "Entrega rápida",
+      "Escala limpia",
+      "Automatiza todo",
+      "Nivel empresarial",
+      "Píxeles ruidosos"
+    ]
+  },
+  "Services": {
+    "chip": "01 — Servicios",
+    "title1": "Lo que",
+    "title2": "",
+    "title3": "hago",
+    "intro": "Desde interfaces al píxel hasta integraciones empresariales: diseño, construyo y entrego todo el stack.",
+    "items": {
+      "frontend": {
+        "title": "Desarrollo Frontend",
+        "body": "Aplicaciones web modernas con Angular, React y Next.js, enfocadas en el rendimiento y la experiencia de usuario."
+      },
+      "backend": {
+        "title": "Desarrollo Backend",
+        "body": "Soluciones robustas del lado del servidor con .NET, Node, Go y Laravel: escalables, mantenibles y con Clean Architecture como base."
+      },
+      "servicenow": {
+        "title": "ServiceNow y Automatización",
+        "body": "Aplicaciones con alcance personalizado, Glide scripting y flujos de Flow Designer / Integration Hub que automatizan procesos empresariales complejos."
+      },
+      "integration": {
+        "title": "Integración Full Stack",
+        "body": "Conecto frontends, APIs y ERPs como SAP Business One en productos cohesivos y eficientes, con CI/CD sólido."
+      }
+    }
+  },
+  "Tech": {
+    "heading": "Tech stack",
+    "count": "Tecnologías en 3D",
+    "keepScrolling": "02 — Sigue bajando",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Datos",
+      "platform": "Plataformas y herramientas"
+    }
+  },
+  "Experience": {
+    "chip": "03 — Experiencia",
+    "title1": "Dónde",
+    "title2": "he estado",
+    "hint": "Desliza para recorrer",
+    "present": "Presente",
+    "work": "Trabajo",
+    "education": "Educación",
+    "next": "¿Lo que sigue?",
+    "talk": "Hablemos",
+    "entries": {
+      "altiatek": {
+        "role": "Ingeniero de Software y Consultor Técnico ServiceNow",
+        "description": "Desarrollo soluciones personalizadas en ServiceNow con Glide Scripting (Business Rules, Script Includes) y Flow Designer / Integration Hub para automatizar flujos de trabajo complejos. Configuro aplicaciones con alcance personalizado y dashboards de Platform Analytics. Node/TypeScript + Jest para integraciones de APIs."
+      },
+      "platino": {
+        "role": "Desarrollador de Software",
+        "description": "Desarrollé plataformas CRM empresariales con C# .NET (Clean Architecture) y Angular dentro de un equipo Ágil, integradas mediante SAP B1 Service Layer. Optimicé pipelines de CI/CD y entregué trabajo en sprints de Jira."
+      },
+      "bytes": {
+        "role": "Ingeniero de Software Full Stack Freelance",
+        "description": "Desarrollo aplicaciones empresariales a medida y sitios web para clientes con un amplio conjunto de herramientas full stack: Node, Go, .NET, Java, Python, PHP/Laravel, Bootstrap y Tailwind CSS."
+      },
+      "uth": {
+        "role": "Ingeniería en Software",
+        "organization": "Universidad Tecnológica de Honduras (UTH)",
+        "description": "Licenciatura en Ingeniería en Software, en curso. En paralelo a mi experiencia profesional en desarrollo de software empresarial.",
+        "tags": ["Ingeniería en Software", "En curso"]
+      }
+    }
+  },
+  "Projects": {
+    "chip": "04 — Proyectos",
+    "title1": "Trabajo",
+    "title2": "Destacado",
+    "intro": "Plataformas empresariales, CRMs y experimentos open source, construidos de principio a fin.",
+    "filterLabel": "Filtrar:",
+    "filterGroup": "Filtrar proyectos",
+    "filters": {
+      "all": "Todos",
+      "fullstack": "Full Stack",
+      "backend": "Backend",
+      "frontend": "Frontend"
+    },
+    "code": "Código",
+    "live": "Ver sitio",
+    "items": {
+      "cripco": {
+        "title": "Cripco - Portal de Rehabilitación",
+        "description": "Plataforma para un centro de rehabilitación con expedientes de pacientes, citas, terapeutas y planes de tratamiento, además de un sitio web público y notificaciones por WhatsApp"
+      },
+      "bytes": {
+        "title": "Bytes - Sitio Web Corporativo",
+        "description": "Sitio web corporativo de Bytes que presenta sus servicios de desarrollo de software para empresas"
+      },
+      "pcs": {
+        "title": "PCS - Software de Construcción",
+        "description": "Plataforma de gestión de costos y proyectos para empresas constructoras: control de presupuesto, asignación de recursos y reportes de avance en tiempo real"
+      },
+      "platino": {
+        "title": "Platino CRM",
+        "description": "CRM para la distribución de camiones, maquinaria pesada y repuestos, integrado con SAP Business One para el seguimiento de ventas, inventario y gestión de clientes"
+      },
+      "pixel": {
+        "title": "Pixel Todo",
+        "description": "App de lista de tareas creada como reto de programación, con Laravel como framework backend y Bootstrap 5 en la interfaz"
+      },
+      "clean": {
+        "title": "Plantilla Clean Architecture",
+        "description": "Plantilla de solución en C# .NET organizada en cuatro capas — Api, Application, Domain e Infrastructure — siguiendo los patrones Clean Architecture y CQRS"
+      },
+      "articles": {
+        "title": "ArticlesAPI",
+        "description": "API REST construida con .NET que crea automáticamente la base de datos mediante migraciones en el primer arranque, con endpoints basados en los principios de Clean Architecture"
+      },
+      "aiskills": {
+        "title": "AI-Skills",
+        "description": "Colección de scripts y experimentos en Python que exploran herramientas de IA y flujos de automatización"
+      }
+    }
+  },
+  "Cripco": {
+    "sticker": "Nuevo",
+    "featured": "Destacado",
+    "tag": "Full Stack · HealthTech",
+    "subtitle": "Portal para centro de rehabilitación",
+    "description": "Una plataforma digital completa para un centro de rehabilitación: expedientes de pacientes, agenda de citas, terapeutas y planes de tratamiento en un solo panel, además de un sitio web público y notificaciones por WhatsApp que mantienen informados a los pacientes.",
+    "features": [
+      "Pacientes y expedientes clínicos",
+      "Citas con delegación entre terapeutas",
+      "Planes de tratamiento con subactividades",
+      "Reportes diarios y mensuales automáticos",
+      "Sitio público: noticias, eventos, servicios",
+      "Recordatorios y notificaciones por WhatsApp"
+    ],
+    "visit": "Visitar cripco-hn.org"
+  },
+  "Contact": {
+    "chip": "05 — Contacto",
+    "lines": ["Construyamos", "Algo", "Que haga", "Ruido."],
+    "intro": "¿Tienes un proyecto, una vacante o una idea loca? Mi bandeja está abierta; normalmente respondo en menos de un día."
+  },
+  "Footer": {
+    "tagline": "Desarrollador Full Stack creando aplicaciones web de nivel empresarial con tecnologías modernas.",
+    "navigate": "Navegación",
+    "connect": "Conecta",
+    "rights": "Todos los derechos reservados.",
+    "top": "Arriba"
+  },
+  "About": {
+    "chip": "Acerca de",
+    "hi": "Hola, soy",
+    "body": "Ingeniero de software con más de 4 años creando arquitectura de plataformas empresariales. Trabajo con ServiceNow, C# .NET, Node, Go y Angular/React: desde backends con Clean Architecture e integraciones con ERPs hasta interfaces que la gente disfruta usar. Actualmente soy Ingeniero de Software y Consultor Técnico ServiceNow en Altiatek y estoy terminando mi carrera de Ingeniería en Software en la UTH.",
+    "basedIn": "Ubicación",
+    "experience": "Experiencia",
+    "experienceValue": "4+ años",
+    "focus": "Enfoque",
+    "back": "← Volver al inicio"
+  }
 }

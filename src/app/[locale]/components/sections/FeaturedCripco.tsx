@@ -1,5 +1,6 @@
 'use client'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { HiArrowUpRight } from 'react-icons/hi2'
@@ -21,15 +22,6 @@ const STACK = [
   'Tailwind CSS',
   'WhatsApp Cloud API',
   'PWA'
-]
-
-const FEATURES = [
-  'Patients & clinical records',
-  'Appointments with therapist delegation',
-  'Treatment plans with sub-activities',
-  'Automated daily & monthly reports',
-  'Public site: news, events, services',
-  'WhatsApp reminders & notifications'
 ]
 
 const NAV = [
@@ -55,6 +47,7 @@ const APPOINTMENTS: [number, number, number, string][] = [
 /** Featured project: CRIPCO, with a hand-drawn mock of its dashboard that assembles itself on scroll. */
 export default function FeaturedCripco() {
   const root = useRef<HTMLDivElement>(null)
+  const t = useTranslations('Cripco')
 
   useGSAP(
     () => {
@@ -131,7 +124,7 @@ export default function FeaturedCripco() {
     <div ref={root} className='[perspective:1600px]'>
       <article className='cripco-card nb-card relative grid overflow-visible bg-nb-lime text-on-accent shadow-nb-xl will-change-transform [--line:#0a0a0a] lg:grid-cols-[1fr_1.15fr]'>
         <span className='cripco-sticker nb-border absolute -right-4 -top-6 z-20 grid size-24 rotate-12 place-items-center rounded-full bg-nb-pink text-center font-display text-lg uppercase leading-none shadow-nb sm:-right-6 sm:size-28'>
-          New
+          {t('sticker')}
           <br />
           2026
         </span>
@@ -139,27 +132,24 @@ export default function FeaturedCripco() {
         <div className='p-6 sm:p-10'>
           <div className='mb-4 flex flex-wrap gap-2'>
             <span className='nb-chip !border-[#0a0a0a] !bg-[#0a0a0a] !text-nb-lime'>
-              Featured
+              {t('featured')}
             </span>
             <span className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'>
-              Full Stack · HealthTech
+              {t('tag')}
             </span>
           </div>
           <h3 className='font-display text-[clamp(3rem,7vw,5.5rem)] uppercase leading-[0.85]'>
             Cripco
           </h3>
           <p className='mt-2 font-mono text-sm font-bold uppercase'>
-            Rehabilitation center portal
+            {t('subtitle')}
           </p>
           <p className='mt-5 max-w-xl text-base font-medium leading-relaxed sm:text-lg'>
-            A complete digital platform for a rehabilitation center: patient
-            records, appointment scheduling, therapists and treatment plans in
-            one dashboard — plus a public website and WhatsApp notifications
-            that keep patients in the loop.
+            {t('description')}
           </p>
 
           <ul className='mt-6 grid gap-2 sm:grid-cols-2'>
-            {FEATURES.map(f => (
+            {(t.raw('features') as string[]).map(f => (
               <li
                 key={f}
                 className='cripco-feature flex items-start gap-2 text-sm font-bold'
@@ -187,7 +177,7 @@ export default function FeaturedCripco() {
             rel='noopener noreferrer'
             className='nb-btn mt-8 bg-[#0a0a0a] px-5 py-3 !text-nb-lime'
           >
-            Visit cripco-hn.org <HiArrowUpRight className='size-4' />
+            {t('visit')} <HiArrowUpRight className='size-4' />
           </a>
         </div>
 

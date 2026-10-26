@@ -1,16 +1,17 @@
 'use client'
 import { Link } from '@/src/navigation'
+import { useTranslations } from 'next-intl'
 import { useParams, useSelectedLayoutSegments } from 'next/navigation'
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { HiArrowUp } from 'react-icons/hi2'
 import { MdEmail } from 'react-icons/md'
 
 const NAV = [
-  { hash: '#services', label: 'Services' },
-  { hash: '#skills', label: 'Stack' },
-  { hash: '#experience', label: 'Experience' },
-  { hash: '#projects', label: 'Projects' },
-  { hash: '#contact', label: 'Contact' }
+  { hash: '#services', label: 'services' },
+  { hash: '#skills', label: 'stack' },
+  { hash: '#experience', label: 'experience' },
+  { hash: '#projects', label: 'projects' },
+  { hash: '#contact', label: 'contact' }
 ]
 
 const SOCIAL = [
@@ -27,6 +28,8 @@ const SOCIAL = [
 export default function Footer() {
   const { locale } = useParams<{ locale: string }>()
   const isHome = useSelectedLayoutSegments().length === 0
+  const t = useTranslations('Footer')
+  const nav = useTranslations('Nav')
   const hrefFor = (hash: string) => (isHome ? hash : `/${locale}${hash}`)
 
   return (
@@ -43,14 +46,13 @@ export default function Footer() {
               </strong>
             </div>
             <p className='mt-4 max-w-sm text-sm text-[#c4bcab]'>
-              Full Stack Developer building enterprise-grade web applications
-              with modern technologies.
+              {t('tagline')}
             </p>
           </div>
 
           <nav aria-label='Footer'>
             <h4 className='mb-4 font-mono text-xs font-bold uppercase tracking-widest text-nb-lime'>
-              Navigate
+              {t('navigate')}
             </h4>
             <ul className='grid gap-2 text-sm'>
               {NAV.map(item => (
@@ -59,7 +61,7 @@ export default function Footer() {
                     href={hrefFor(item.hash)}
                     className='hover:text-nb-yellow hover:underline'
                   >
-                    {item.label}
+                    {nav(item.label)}
                   </a>
                 </li>
               ))}
@@ -68,7 +70,7 @@ export default function Footer() {
                   href='/about'
                   className='hover:text-nb-yellow hover:underline'
                 >
-                  About
+                  {nav('about')}
                 </Link>
               </li>
             </ul>
@@ -76,7 +78,7 @@ export default function Footer() {
 
           <div>
             <h4 className='mb-4 font-mono text-xs font-bold uppercase tracking-widest text-nb-pink'>
-              Connect
+              {t('connect')}
             </h4>
             <div className='flex flex-wrap gap-3'>
               {SOCIAL.map(({ href, label, icon: Icon }) => (
@@ -106,10 +108,10 @@ export default function Footer() {
 
         <div className='mt-8 flex flex-col items-center justify-between gap-4 border-t-2 border-dashed border-[#f5f0e1]/40 pt-6 sm:flex-row'>
           <span className='font-mono text-xs'>
-            © {new Date().getFullYear()} Andrés Meoñez. All rights reserved.
+            © {new Date().getFullYear()} Andrés Meoñez. {t('rights')}
           </span>
           <a href={hrefFor('#top')} className='nb-btn bg-nb-yellow px-3 py-2'>
-            Top <HiArrowUp className='size-4' />
+            {t('top')} <HiArrowUp className='size-4' />
           </a>
         </div>
       </div>

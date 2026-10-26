@@ -1,6 +1,7 @@
 'use client'
 import { gsap, ScrollTrigger, useGSAP } from '@/src/lib/gsap'
 import { Link } from '@/src/navigation'
+import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { useSelectedLayoutSegments } from 'next/navigation'
 import { FC, useEffect, useRef, useState } from 'react'
@@ -14,11 +15,11 @@ interface Props {
 }
 
 const NAV_LINKS = [
-  { hash: '#services', label: 'Services' },
-  { hash: '#skills', label: 'Stack' },
-  { hash: '#experience', label: 'Experience' },
-  { hash: '#projects', label: 'Projects' },
-  { hash: '#contact', label: 'Contact' }
+  { hash: '#services', label: 'services' },
+  { hash: '#skills', label: 'stack' },
+  { hash: '#experience', label: 'experience' },
+  { hash: '#projects', label: 'projects' },
+  { hash: '#contact', label: 'contact' }
 ]
 
 export const Header: FC<Props> = ({ locale }) => {
@@ -27,6 +28,7 @@ export const Header: FC<Props> = ({ locale }) => {
   const { resolvedTheme, setTheme } = useTheme()
   const segments = useSelectedLayoutSegments()
   const header = useRef<HTMLElement>(null)
+  const t = useTranslations('Nav')
 
   useEffect(() => setMounted(true), [])
 
@@ -61,7 +63,7 @@ export const Header: FC<Props> = ({ locale }) => {
           lang={locale}
           href='/'
           className='group flex items-center gap-2.5'
-          aria-label='Home'
+          aria-label={t('home')}
         >
           <span className='nb-border grid size-10 -rotate-6 place-items-center rounded-md bg-nb-yellow font-display text-sm text-on-accent shadow-nb-sm transition-transform group-hover:rotate-6'>
             AM
@@ -71,14 +73,17 @@ export const Header: FC<Props> = ({ locale }) => {
           </strong>
         </Link>
 
-        <nav className='hidden items-center gap-1 lg:flex' aria-label='Main'>
+        <nav
+          className='hidden items-center gap-1 lg:flex'
+          aria-label={t('main')}
+        >
           {NAV_LINKS.map(link => (
             <a
               key={link.hash}
               href={hrefFor(link.hash)}
               className='rounded-md border-2 border-transparent px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors hover:border-line hover:bg-nb-yellow hover:text-on-accent'
             >
-              {link.label}
+              {t(link.label)}
             </a>
           ))}
         </nav>
@@ -89,7 +94,7 @@ export const Header: FC<Props> = ({ locale }) => {
           <button
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
             className='nb-btn size-10 bg-nb-violet !p-0'
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={isDark ? t('lightMode') : t('darkMode')}
           >
             {mounted &&
               (isDark ? (
@@ -112,7 +117,7 @@ export const Header: FC<Props> = ({ locale }) => {
           <button
             onClick={() => setMenuOpen(o => !o)}
             className='nb-btn size-10 bg-nb-pink !p-0 lg:hidden'
-            aria-label='Toggle menu'
+            aria-label={t('toggleMenu')}
             aria-expanded={menuOpen}
           >
             {menuOpen ? (
@@ -127,7 +132,7 @@ export const Header: FC<Props> = ({ locale }) => {
       {menuOpen && (
         <nav
           className='nb-card mx-auto mt-3 grid max-w-screen-2xl gap-2 bg-nb-yellow p-3 lg:hidden'
-          aria-label='Mobile'
+          aria-label={t('mobile')}
         >
           {NAV_LINKS.map((link, i) => (
             <a
@@ -136,7 +141,7 @@ export const Header: FC<Props> = ({ locale }) => {
               onClick={() => setMenuOpen(false)}
               className='nb-border flex items-center justify-between rounded-md bg-paper px-4 py-3 font-display text-lg uppercase text-ink'
             >
-              {link.label}
+              {t(link.label)}
               <span className='font-mono text-xs'>0{i + 1}</span>
             </a>
           ))}

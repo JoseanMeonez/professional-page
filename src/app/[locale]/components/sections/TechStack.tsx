@@ -1,6 +1,7 @@
 'use client'
 import { TECH_ICONS } from '@/src/data/techIcons'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
 import { useRef } from 'react'
 import SceneBoundary from '../three/SceneBoundary'
@@ -10,7 +11,7 @@ const TechScene = dynamic(() => import('../three/TechScene'), { ssr: false })
 
 const CATEGORIES = [
   {
-    label: 'Frontend',
+    label: 'frontend',
     color: 'bg-nb-yellow',
     skills: [
       'React',
@@ -23,17 +24,17 @@ const CATEGORIES = [
     ]
   },
   {
-    label: 'Backend',
+    label: 'backend',
     color: 'bg-nb-cyan',
     skills: ['C#', '.NET', 'Node.js', 'Go', 'Java', 'PHP', 'Laravel', 'Python']
   },
   {
-    label: 'Data',
+    label: 'data',
     color: 'bg-nb-pink',
     skills: ['SQL Server', 'PostgreSQL', 'MySQL', 'Entity Framework', 'Prisma']
   },
   {
-    label: 'Platform & Tools',
+    label: 'platform',
     color: 'bg-nb-lime',
     skills: ['ServiceNow', 'Azure', 'Docker', 'Git', 'Vercel', 'Jira', 'SAP']
   }
@@ -50,6 +51,7 @@ export default function TechStack() {
   const root = useRef<HTMLElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const progress = useRef(0)
+  const t = useTranslations('Tech')
   const active = useInViewport(stage)
 
   useGSAP(
@@ -123,10 +125,10 @@ export default function TechStack() {
 
         <div className='pointer-events-none absolute inset-x-0 top-24 z-10 flex flex-col items-center font-display uppercase leading-[0.85]'>
           <span className='tech-heading-a whitespace-nowrap text-[clamp(3rem,11vw,9rem)] [-webkit-text-stroke:0.12em_var(--bg)] [paint-order:stroke_fill]'>
-            Tech stack
+            {t('heading')}
           </span>
           <span className='tech-heading-b whitespace-nowrap text-[clamp(3rem,11vw,9rem)] text-bg [-webkit-text-stroke:3px_var(--ink)]'>
-            Tech stack
+            {t('heading')}
           </span>
         </div>
 
@@ -135,11 +137,11 @@ export default function TechStack() {
             {TECH_ICONS.length}
           </div>
           <div className='font-mono text-xs font-bold uppercase'>
-            Technologies in 3D
+            {t('count')}
           </div>
         </div>
         <span className='nb-chip absolute bottom-10 right-5 z-10 sm:right-10'>
-          02 — Keep scrolling
+          {t('keepScrolling')}
         </span>
       </div>
 
@@ -149,7 +151,7 @@ export default function TechStack() {
             <h3
               className={`nb-border -mx-5 -mt-5 mb-5 rounded-t-[7px] border-x-0 border-t-0 ${cat.color} px-5 py-3 font-display text-xl uppercase text-on-accent`}
             >
-              {cat.label}
+              {t(`categories.${cat.label}`)}
             </h3>
             <ul className='flex flex-wrap gap-2'>
               {cat.skills.map(skill => (

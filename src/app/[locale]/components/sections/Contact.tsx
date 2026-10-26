@@ -1,22 +1,17 @@
 'use client'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { HiArrowUpRight } from 'react-icons/hi2'
 import { MdEmail } from 'react-icons/md'
 
-const LINES = [
-  { text: "Let's", className: '' },
-  {
-    text: 'Build',
-    className: 'nb-outline-text [-webkit-text-stroke-color:#0a0a0a]'
-  },
-  { text: 'Something', className: '' },
-  {
-    text: 'Loud.',
-    className:
-      'inline-block -rotate-2 rounded-lg bg-[#0a0a0a] px-4 text-nb-yellow'
-  }
+// Per-line styling; the words come from messages (Contact.lines).
+const LINE_STYLES = [
+  '',
+  'nb-outline-text [-webkit-text-stroke-color:#0a0a0a]',
+  '',
+  'inline-block -rotate-2 rounded-lg bg-[#0a0a0a] px-4 text-nb-yellow'
 ]
 
 const CHANNELS = [
@@ -52,6 +47,8 @@ const CHANNELS = [
 
 export default function Contact() {
   const root = useRef<HTMLElement>(null)
+  const t = useTranslations('Contact')
+  const lines = t.raw('lines') as string[]
 
   useGSAP(
     () => {
@@ -99,22 +96,21 @@ export default function Contact() {
       <div className='bg-dots pointer-events-none absolute inset-0' />
       <div className='container relative'>
         <span className='nb-chip mb-8 !bg-white !text-[#0a0a0a]'>
-          05 — Contact
+          {t('chip')}
         </span>
-        <h2 className='font-display text-[clamp(3.2rem,12vw,10rem)] uppercase leading-[0.9]'>
-          {LINES.map((line, i) => (
+        <h2 className='font-display text-[clamp(2rem,7.5vw,8.5rem)] uppercase leading-[0.9]'>
+          {lines.map((line, i) => (
             <span
-              key={line.text}
+              key={line}
               className={`contact-line block ${i % 2 ? 'text-right' : ''}`}
             >
-              <span className={line.className}>{line.text}</span>
+              <span className={LINE_STYLES[i]}>{line}</span>
             </span>
           ))}
         </h2>
 
         <p className='mx-auto mt-10 max-w-xl text-center text-lg font-medium'>
-          Have a project, a role or a wild idea? My inbox is open — I usually
-          reply within a day.
+          {t('intro')}
         </p>
 
         <div className='contact-grid mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>

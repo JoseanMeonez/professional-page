@@ -1,5 +1,6 @@
 'use client'
 import { gsap, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import {
   PiBracketsCurlyBold,
@@ -10,29 +11,25 @@ import {
 
 const SERVICES = [
   {
-    title: 'Frontend Development',
-    body: 'Building modern web applications with Angular, React and Next.js, focusing on performance and user experience.',
+    id: 'frontend',
     tags: ['React', 'Next.js', 'Angular', 'Tailwind'],
     icon: PiCodeBold,
     color: 'bg-nb-yellow'
   },
   {
-    title: 'Backend Development',
-    body: 'Robust server-side solutions with .NET, Node, Go and Laravel — scalable, maintainable, Clean Architecture first.',
+    id: 'backend',
     tags: ['C# .NET', 'Node.js', 'Go', 'CQRS'],
     icon: PiBracketsCurlyBold,
     color: 'bg-nb-cyan'
   },
   {
-    title: 'ServiceNow & Automation',
-    body: 'Custom scoped apps, Glide scripting and Flow Designer / Integration Hub flows that automate complex enterprise workflows.',
+    id: 'servicenow',
     tags: ['Glide', 'Flow Designer', 'Integration Hub'],
     icon: PiGearSixBold,
     color: 'bg-nb-lime'
   },
   {
-    title: 'Full Stack Integration',
-    body: 'Connecting frontends, APIs and ERPs like SAP Business One into cohesive, efficient products with solid CI/CD.',
+    id: 'integration',
     tags: ['REST', 'SAP B1', 'CI/CD', 'WhatsApp API'],
     icon: PiPlugsConnectedBold,
     color: 'bg-nb-pink'
@@ -41,6 +38,7 @@ const SERVICES = [
 
 export default function Services() {
   const root = useRef<HTMLElement>(null)
+  const t = useTranslations('Services')
 
   useGSAP(
     () => {
@@ -155,18 +153,16 @@ export default function Services() {
       <div className='container relative grid items-center gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20'>
         <div>
           <span className='nb-chip mb-6 !bg-nb-orange !text-on-accent'>
-            01 — Services
+            {t('chip')}
           </span>
           <h2 className='services-title overflow-hidden font-display text-[clamp(3rem,8vw,7rem)] uppercase leading-[0.88]'>
-            <span className='block'>What</span>
+            <span className='block'>{t('title1')}</span>
             <span className='block'>
-              I <span className='nb-outline-text'>do</span>
+              {t('title2')}{' '}
+              <span className='nb-outline-text'>{t('title3')}</span>
             </span>
           </h2>
-          <p className='mt-6 max-w-md text-lg text-muted'>
-            From pixel-perfect interfaces to enterprise integrations — I design,
-            build and ship the full stack.
-          </p>
+          <p className='mt-6 max-w-md text-lg text-muted'>{t('intro')}</p>
           <div
             className='mt-10 hidden items-end gap-3 font-display lg:flex'
             aria-hidden
@@ -179,9 +175,9 @@ export default function Services() {
         </div>
 
         <div className='services-stack relative grid gap-8'>
-          {SERVICES.map(({ title, body, tags, icon: Icon, color }, i) => (
+          {SERVICES.map(({ id, tags, icon: Icon, color }, i) => (
             <article
-              key={title}
+              key={id}
               className={`service-card nb-card relative flex flex-col justify-between gap-8 ${color} p-7 text-on-accent sm:p-9`}
               style={{ zIndex: i + 1 }}
             >
@@ -199,10 +195,10 @@ export default function Services() {
               </div>
               <div>
                 <h3 className='font-display text-3xl uppercase leading-none sm:text-4xl'>
-                  {title}
+                  {t(`items.${id}.title`)}
                 </h3>
                 <p className='mt-4 max-w-lg text-base font-medium leading-relaxed sm:text-lg'>
-                  {body}
+                  {t(`items.${id}.body`)}
                 </p>
                 <div className='mt-6 flex flex-wrap gap-2'>
                   {tags.map(tag => (

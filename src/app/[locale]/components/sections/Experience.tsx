@@ -1,15 +1,23 @@
 'use client'
 import { gsap, MOTION_OK, useGSAP } from '@/src/lib/gsap'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import { HiArrowLongRight } from 'react-icons/hi2'
 
-const ENTRIES = [
+// Roles, descriptions and (for UTH) the organization and tags live in messages under Experience.entries.<id>.
+const ENTRIES: {
+  id: string
+  from: number
+  to?: number
+  organization?: string
+  tags?: string[]
+  type: 'work' | 'education'
+  color: string
+}[] = [
   {
-    period: '2025 – Present',
-    role: 'Software Engineer & ServiceNow Technical Consultant',
+    id: 'altiatek',
+    from: 2025,
     organization: 'Altiatek',
-    description:
-      'Engineering custom ServiceNow solutions with Glide Scripting (Business Rules, Script Includes) and Flow Designer / Integration Hub to automate complex workflows. Configuring Custom Scoped Applications and Platform Analytics dashboards. Node/TypeScript + Jest for API integrations.',
     tags: [
       'ServiceNow',
       'Glide Scripting',
@@ -18,15 +26,14 @@ const ENTRIES = [
       'TypeScript',
       'Jest'
     ],
-    type: 'Work',
+    type: 'work',
     color: 'bg-nb-lime'
   },
   {
-    period: '2023 – 2025',
-    role: 'Software Developer',
+    id: 'platino',
+    from: 2023,
+    to: 2025,
     organization: 'Grupo Platino',
-    description:
-      'Built enterprise CRM platforms with C# .NET (Clean Architecture) and Angular within an Agile team, integrating via SAP B1 Service Layer. Optimized CI/CD pipelines and delivered work in Jira sprints.',
     tags: [
       'C# .NET',
       'Angular',
@@ -35,15 +42,13 @@ const ENTRIES = [
       'CI/CD',
       'Jira'
     ],
-    type: 'Work',
+    type: 'work',
     color: 'bg-nb-cyan'
   },
   {
-    period: '2021 – Present',
-    role: 'Freelance Full Stack Software Engineer',
+    id: 'bytes',
+    from: 2021,
     organization: 'Bytes',
-    description:
-      'Developed custom business applications and client websites using a broad full-stack toolset: Node, Go, .NET, Java, Python, PHP/Laravel, Bootstrap, and Tailwind CSS.',
     tags: [
       'Node.js',
       'Go',
@@ -53,17 +58,13 @@ const ENTRIES = [
       'PHP/Laravel',
       'Tailwind CSS'
     ],
-    type: 'Work',
+    type: 'work',
     color: 'bg-nb-yellow'
   },
   {
-    period: '2019 – Present',
-    role: 'Software Engineering',
-    organization: 'Universidad Tecnológica de Honduras (UTH)',
-    description:
-      "Bachelor's degree in Software Engineering, in progress. Parallel to professional experience in enterprise software development.",
-    tags: ['Software Engineering', 'In Progress'],
-    type: 'Education',
+    id: 'uth',
+    from: 2019,
+    type: 'education',
     color: 'bg-nb-violet'
   }
 ]
@@ -72,6 +73,7 @@ export default function Experience() {
   const root = useRef<HTMLElement>(null)
   const viewport = useRef<HTMLDivElement>(null)
   const track = useRef<HTMLDivElement>(null)
+  const t = useTranslations('Experience')
 
   useGSAP(
     () => {
@@ -152,42 +154,44 @@ export default function Experience() {
         >
           <div className='w-[min(80vw,520px)] shrink-0'>
             <span className='nb-chip mb-6 !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'>
-              03 — Experience
+              {t('chip')}
             </span>
             <h2 className='font-display text-[clamp(3rem,9vw,7.5rem)] uppercase leading-[0.85] text-white [-webkit-text-stroke:3px_#0a0a0a] [paint-order:stroke_fill]'>
-              Where
+              {t('title1')}
               <br />
-              I&apos;ve been
+              {t('title2')}
             </h2>
             <p className='mt-6 flex items-center gap-3 font-mono text-sm font-bold uppercase'>
-              Scroll to travel <HiArrowLongRight className='size-6' />
+              {t('hint')} <HiArrowLongRight className='size-6' />
             </p>
           </div>
 
           {ENTRIES.map(entry => (
             <article
-              key={entry.role}
+              key={entry.id}
               className={`exp-card nb-card w-[min(82vw,440px)] shrink-0 ${entry.color} p-6 shadow-nb-lg will-change-transform [--line:#0a0a0a] sm:p-8`}
             >
               <div className='mb-5 flex items-center justify-between gap-3'>
                 <span className='nb-border rounded-md bg-white px-2.5 py-1 font-mono text-xs font-bold'>
-                  {entry.period}
+                  {entry.from} – {entry.to ?? t('present')}
                 </span>
                 <span className='font-mono text-xs font-bold uppercase'>
-                  {entry.type}
+                  {t(entry.type)}
                 </span>
               </div>
               <h3 className='font-display text-2xl uppercase leading-tight sm:text-3xl'>
-                {entry.role}
+                {t(`entries.${entry.id}.role`)}
               </h3>
               <p className='mt-1 font-mono text-sm font-bold'>
-                @ {entry.organization}
+                @ {entry.organization ?? t(`entries.${entry.id}.organization`)}
               </p>
               <p className='mt-4 text-[15px] font-medium leading-relaxed'>
-                {entry.description}
+                {t(`entries.${entry.id}.description`)}
               </p>
               <div className='mt-5 flex flex-wrap gap-1.5'>
-                {entry.tags.map(tag => (
+                {(
+                  entry.tags ?? (t.raw(`entries.${entry.id}.tags`) as string[])
+                ).map(tag => (
                   <span
                     key={tag}
                     className='nb-chip !border-[#0a0a0a] !bg-white !text-[#0a0a0a]'
@@ -202,10 +206,10 @@ export default function Experience() {
           <div className='grid w-[min(70vw,360px)] shrink-0 place-items-center'>
             <div className='nb-card rotate-3 bg-nb-yellow p-8 text-center shadow-nb-lg [--line:#0a0a0a]'>
               <div className='font-display text-5xl uppercase leading-none'>
-                Next?
+                {t('next')}
               </div>
               <a href='#contact' className='nb-btn mt-6 bg-white px-5 py-3'>
-                Let&apos;s talk <HiArrowLongRight className='size-5' />
+                {t('talk')} <HiArrowLongRight className='size-5' />
               </a>
             </div>
           </div>
