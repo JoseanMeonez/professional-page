@@ -53,9 +53,14 @@ const config = {
         3: '3px'
       },
       fontFamily: {
-        sans: ['var(--font-space-grotesk)', 'var(--rubik)', 'sans-serif'],
+        sans: [
+          "'Google Sans'",
+          'var(--font-space-grotesk)',
+          'var(--rubik)',
+          'sans-serif'
+        ],
         display: ['var(--font-archivo-black)', 'var(--font-space-grotesk)', 'sans-serif'],
-        mono: ['var(--font-jetbrains-mono)', 'monospace']
+        mono: ["'Google Sans Code'", 'var(--font-jetbrains-mono)', 'monospace']
       }
     }
   },

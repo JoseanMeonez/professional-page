@@ -111,6 +111,19 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Proof of concept: Google Sans / Google Sans Code aren't in next/font's catalog for this Next version. */}
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin=''
+        />
+        {/* Root layout, so this applies to every page; the rule targets pages/_document. */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code:wght@400;500;700&display=swap'
+        />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{
