@@ -6,7 +6,7 @@ import { HiArrowLongRight } from 'react-icons/hi2'
 const ENTRIES = [
   {
     period: '2025 – Present',
-    role: 'ServiceNow Technical Consultant',
+    role: 'Software Engineer & ServiceNow Technical Consultant',
     organization: 'Altiatek',
     description:
       'Engineering custom ServiceNow solutions with Glide Scripting (Business Rules, Script Includes) and Flow Designer / Integration Hub to automate complex workflows. Configuring Custom Scoped Applications and Platform Analytics dashboards. Node/TypeScript + Jest for API integrations.',
@@ -23,10 +23,10 @@ const ENTRIES = [
   },
   {
     period: '2023 – 2025',
-    role: 'Backend Developer Team Lead',
+    role: 'Software Developer',
     organization: 'Grupo Platino',
     description:
-      'Led an Agile team building enterprise CRM platforms with C# .NET (Clean Architecture) and Angular, integrating via SAP B1 Service Layer. Optimized CI/CD pipelines and managed project sprints in Jira.',
+      'Built enterprise CRM platforms with C# .NET (Clean Architecture) and Angular within an Agile team, integrating via SAP B1 Service Layer. Optimized CI/CD pipelines and delivered work in Jira sprints.',
     tags: [
       'C# .NET',
       'Angular',

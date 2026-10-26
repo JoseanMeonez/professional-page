@@ -22,9 +22,9 @@ export default function About({
           Software engineer with 4+ years delivering enterprise platform
           architecture. I work across ServiceNow, C# .NET, Node, Go and
           Angular/React — from Clean Architecture backends and ERP integrations
-          to interfaces people actually enjoy using. Currently a ServiceNow
-          Technical Consultant at Altiatek and finishing my Software Engineering
-          degree at UTH.
+          to interfaces people actually enjoy using. Currently a Software
+          Engineer & ServiceNow Technical Consultant at Altiatek and finishing
+          my Software Engineering degree at UTH.
         </p>
         <div className='mt-8 grid gap-5 sm:grid-cols-3'>
           {FACTS.map(f => (
