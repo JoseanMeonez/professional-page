@@ -49,10 +49,10 @@
     ],
     "motto": [
       "Entrega rápida",
-      "Escala limpia",
+      "Código limpio",
       "Automatiza todo",
       "Nivel empresarial",
-      "Píxeles ruidosos"
+      "Listo para producción"
     ]
   },
   "Services": {
@@ -227,8 +227,8 @@
   },
   "Contact": {
     "chip": "05 — Contacto",
-    "lines": ["Construyamos", "Algo", "Que haga", "Ruido."],
-    "intro": "¿Tienes un proyecto, una vacante o una idea loca? Mi bandeja está abierta; normalmente respondo en menos de un día."
+    "lines": ["Hablemos", "De tu", "Próximo", "Proyecto."],
+    "intro": "¿Tienes un proyecto, una vacante o una idea? Mi bandeja está abierta; normalmente respondo en menos de un día."
   },
   "Footer": {
     "tagline": "Desarrollador Full Stack creando aplicaciones web de nivel empresarial con tecnologías modernas.",
