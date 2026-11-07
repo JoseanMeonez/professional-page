@@ -313,6 +313,11 @@ export default function Projects() {
                     <p className='mt-[1.2svh] line-clamp-3 text-[clamp(0.8rem,2svh,0.92rem)] leading-relaxed text-muted'>
                       {t(`items.${project.id}.description`)}
                     </p>
+                    {project.wip && (
+                      <p className='mt-[1svh] font-mono text-[11px] font-bold uppercase'>
+                        {t(`items.${project.id}.status`)}
+                      </p>
+                    )}
                     <div className='mt-auto flex flex-wrap gap-1.5 pt-[2svh]'>
                       {project.technologies.slice(0, MAX_TECH).map(tech => (
                         <span key={tech} className='nb-chip !text-[10px]'>

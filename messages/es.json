@@ -149,8 +149,9 @@
         "description": "Servidor MCP que permite a agentes de IA trabajar con ServiceNow de forma segura: las APIs Table, Aggregate y de esquema expuestas como tools, protegidas por un control de escritura por update set y prevalidaciones de riesgo"
       },
       "pitch": {
-        "title": "Pitch - Web, Android e iOS",
-        "description": "App en constante desarrollo: la versión web ya está publicada y las apps para Android e iOS estarán disponibles pronto"
+        "title": "Pitch - Alquiler de Canchas",
+        "description": "Reserva canchas por hora e invita a tu equipo a confirmar. Los dueños llenan su agenda y gestionan sus horarios en un solo lugar",
+        "status": "Web disponible · Android e iOS muy pronto"
       },
       "bytes": {
         "title": "Bytes - Sitio Web Corporativo",
