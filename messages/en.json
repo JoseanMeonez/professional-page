@@ -138,6 +138,7 @@
     },
     "code": "Code",
     "live": "Live",
+    "wip": "In development",
     "items": {
       "cripco": {
         "title": "Cripco - Rehabilitation Portal",
@@ -146,6 +147,11 @@
       "mcp": {
         "title": "ServiceNow MCP Server",
         "description": "MCP server that lets AI agents work with ServiceNow safely: Table, Aggregate and schema APIs exposed as tools, behind an update-set write gate and risk prechecks"
+      },
+      "pitch": {
+        "title": "Pitch - Sports Venue Booking",
+        "description": "Book courts by the hour and invite your team to confirm. Owners fill their schedule and manage every booking in one place",
+        "status": "Web app live · Android & iOS coming soon"
       },
       "bytes": {
         "title": "Bytes - Company Website",

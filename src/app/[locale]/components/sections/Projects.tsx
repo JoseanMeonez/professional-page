@@ -21,6 +21,8 @@ const PROJECTS: {
   technologies: string[]
   demo?: string
   github?: string
+  // Still being built: shows an "in development" badge on the card.
+  wip?: boolean
   categories: Category[]
   color: string
 }[] = [
@@ -37,6 +39,14 @@ const PROJECTS: {
     github: 'https://github.com/JoseanMeonez/servicenow-mcp',
     categories: ['ai', 'backend'],
     color: 'bg-nb-violet'
+  },
+  {
+    id: 'pitch',
+    technologies: ['TypeScript'],
+    demo: 'https://pitch-ui-production.up.railway.app/',
+    categories: ['fullstack'],
+    color: 'bg-nb-orange',
+    wip: true
   },
   {
     id: 'bytes',
@@ -291,12 +301,23 @@ export default function Projects() {
 
                   <div className='flex flex-1 flex-col p-[clamp(0.9rem,2.5svh,1.25rem)]'>
                     {/* Fixed line counts keep every card in the rail the same height. */}
+                    {project.wip && (
+                      <span className='nb-chip mb-[1svh] self-start !bg-nb-yellow !text-[10px] !text-on-accent'>
+                        <span className='size-2 animate-pulse rounded-full bg-nb-red' />
+                        {t('wip')}
+                      </span>
+                    )}
                     <h3 className='line-clamp-3 min-h-[2.5em] font-display text-[clamp(1.1rem,2.8svh,1.4rem)] uppercase leading-[1.25] sm:line-clamp-2'>
                       {t(`items.${project.id}.title`)}
                     </h3>
                     <p className='mt-[1.2svh] line-clamp-3 text-[clamp(0.8rem,2svh,0.92rem)] leading-relaxed text-muted'>
                       {t(`items.${project.id}.description`)}
                     </p>
+                    {project.wip && (
+                      <p className='mt-[1svh] font-mono text-[11px] font-bold uppercase'>
+                        {t(`items.${project.id}.status`)}
+                      </p>
+                    )}
                     <div className='mt-auto flex flex-wrap gap-1.5 pt-[2svh]'>
                       {project.technologies.slice(0, MAX_TECH).map(tech => (
                         <span key={tech} className='nb-chip !text-[10px]'>

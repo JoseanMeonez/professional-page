@@ -138,6 +138,7 @@
     },
     "code": "Code",
     "live": "En ligne",
+    "wip": "En développement",
     "items": {
       "cripco": {
         "title": "Cripco - Portail de rééducation",
@@ -146,6 +147,11 @@
       "mcp": {
         "title": "Serveur MCP ServiceNow",
         "description": "Serveur MCP qui permet aux agents IA de travailler avec ServiceNow en toute sécurité : les API Table, Aggregate et de schéma exposées comme outils, derrière un contrôle d'écriture par update set et des pré-vérifications de risque"
+      },
+      "pitch": {
+        "title": "Pitch - Location de Terrains",
+        "description": "Réservez un terrain à l'heure et invitez votre équipe à confirmer. Les propriétaires remplissent leur agenda en un seul endroit",
+        "status": "Web en ligne · Android et iOS très bientôt"
       },
       "bytes": {
         "title": "Bytes - Site d'entreprise",
