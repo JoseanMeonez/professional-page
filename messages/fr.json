@@ -138,6 +138,7 @@
     },
     "code": "Code",
     "live": "En ligne",
+    "wip": "En développement",
     "items": {
       "cripco": {
         "title": "Cripco - Portail de rééducation",
@@ -146,6 +147,10 @@
       "mcp": {
         "title": "Serveur MCP ServiceNow",
         "description": "Serveur MCP qui permet aux agents IA de travailler avec ServiceNow en toute sécurité : les API Table, Aggregate et de schéma exposées comme outils, derrière un contrôle d'écriture par update set et des pré-vérifications de risque"
+      },
+      "pitch": {
+        "title": "Pitch - Web, Android et iOS",
+        "description": "App en développement constant : la version web est déjà en ligne, les apps Android et iOS arrivent bientôt"
       },
       "bytes": {
         "title": "Bytes - Site d'entreprise",
