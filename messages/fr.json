@@ -49,10 +49,10 @@
     ],
     "motto": [
       "Livrer vite",
-      "Évoluer proprement",
+      "Code propre",
       "Tout automatiser",
       "Niveau entreprise",
-      "Pixels bruyants"
+      "Prêt pour la production"
     ]
   },
   "Services": {
@@ -227,8 +227,8 @@
   },
   "Contact": {
     "chip": "05 — Contact",
-    "lines": ["Construisons", "Quelque", "Chose de", "Bruyant."],
-    "intro": "Un projet, un poste ou une idée folle ? Ma boîte de réception est ouverte — je réponds généralement en moins d'une journée."
+    "lines": ["Parlons", "De votre", "Prochain", "Projet."],
+    "intro": "Un projet, un poste ou une idée ? Ma boîte de réception est ouverte — je réponds généralement en moins d'une journée."
   },
   "Footer": {
     "tagline": "Développeur Full Stack qui crée des applications web de niveau entreprise avec des technologies modernes.",

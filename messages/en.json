@@ -49,10 +49,10 @@
     ],
     "motto": [
       "Ship fast",
-      "Scale clean",
+      "Clean code",
       "Automate everything",
       "Enterprise grade",
-      "Pixel loud"
+      "Production ready"
     ]
   },
   "Services": {
@@ -227,8 +227,8 @@
   },
   "Contact": {
     "chip": "05 — Contact",
-    "lines": ["Let's", "Build", "Something", "Loud."],
-    "intro": "Have a project, a role or a wild idea? My inbox is open — I usually reply within a day."
+    "lines": ["Let's", "Talk About", "Your Next", "Project."],
+    "intro": "Have a project, a role or an idea? My inbox is open — I usually reply within a day."
   },
   "Footer": {
     "tagline": "Full Stack Developer building enterprise-grade web applications with modern technologies.",
